@@ -9,6 +9,10 @@ README.md
 START_HERE.md
 Demo.md
 
+# Allow design system skill files (published as case study artifact)
+!portfolio-assets/kiva-design-system-skill/**/*.md
+!portfolio-assets/kiva-design-system-skill/*.md
+
 # Old prototype versions (keep only current site)
 portfolio-prototype-v1.html
 portfolio-prototype-v2.html
