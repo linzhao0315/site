@@ -3,10 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Case Study — Teaching AI to Speak in Tokens. How Lin Zhao encoded Kiva's design system into a modular AI skill that cut prototype correction loops from 5 to 1.">
+<meta name="description" content="Case Study — Teaching AI to Speak in Tokens. How Lin Zhao encoded Kiva's design system into a modular AI skill that cut prototype correction loops from 5 to 1–2.">
 <meta name="copyright" content="© 2026 Lin Zhao. All rights reserved.">
 <meta property="og:title" content="Teaching AI to Speak in Tokens — Lin Zhao">
-<meta property="og:description" content="How I encoded institutional design knowledge into an AI skill — and cut correction loops from 5 to 1.">
+<meta property="og:description" content="How I encoded institutional design knowledge into an AI skill — and cut correction loops from 5 to 1–2.">
+<meta property="og:url" content="https://www.linzhao15.com/case-ai-skill.html">
+<meta property="og:image" content="https://www.linzhao15.com/portfolio-assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.linzhao15.com/case-ai-skill.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F0E8">
 <meta property="og:type" content="article">
 <title>AI Design Skill — Lin Zhao</title>
 
@@ -1046,7 +1056,7 @@ footer {
     <!-- ── Hero ───────────────────────────────────────────────── -->
     <section id="hero" aria-labelledby="heroTitle">
       <div class="hero-inner">
-        <div class="hero-meta">Kiva &middot; Principal Designer &middot; AI Pioneer &middot; 2025&ndash;2026</div>
+        <div class="hero-meta">Kiva &middot; Principal Product Designer &middot; AI Pioneer &middot; 2025&ndash;2026</div>
         <h1 class="hero-title" id="heroTitle">
           Teaching AI to speak<br><em>in tokens.</em>
         </h1>
@@ -1126,7 +1136,7 @@ footer {
 
       <div class="cs-outcomes-grid" style="margin-top:1.25rem;">
         <div class="cs-outcome-card">
-          <div class="cs-outcome-number">5&rarr;1</div>
+          <div class="cs-outcome-number">5&rarr;1–2</div>
           <div class="cs-outcome-label">correction loops per prototyping session</div>
         </div>
         <div class="cs-outcome-card">
@@ -1592,7 +1602,7 @@ footer {
         <div class="vc-panel vc-before">
           <span class="vc-label">Before the skill</span>
           <div class="vc-video-wrap" role="button" tabindex="0" aria-label="Expand Before video" onclick="openVideoLightbox('portfolio-assets/Before.mp4')">
-            <video class="vc-video" src="portfolio-assets/Before.mp4" muted loop playsinline></video>
+            <video class="vc-video" src="portfolio-assets/Before.mp4" poster="portfolio-assets/Before-poster.webp" preload="none" width="1202" height="720" muted loop playsinline></video>
             <div class="vc-expand" aria-hidden="true">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -1602,7 +1612,7 @@ footer {
         <div class="vc-panel vc-after">
           <span class="vc-label">After the skill</span>
           <div class="vc-video-wrap" role="button" tabindex="0" aria-label="Expand After video" onclick="openVideoLightbox('portfolio-assets/After.mp4')">
-            <video class="vc-video" src="portfolio-assets/After.mp4" muted loop playsinline></video>
+            <video class="vc-video" src="portfolio-assets/After.mp4" poster="portfolio-assets/After-poster.webp" preload="none" width="1202" height="720" muted loop playsinline></video>
             <div class="vc-expand" aria-hidden="true">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -1635,8 +1645,8 @@ footer {
 <!-- ── Lightbox ──────────────────────────────────────────────────── -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media lightbox">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-  <img id="lightboxImg" src="" alt="">
-  <video id="lightboxVid" muted loop playsinline></video>
+  <img id="lightboxImg" src="" alt="" loading="lazy" decoding="async">
+  <video id="lightboxVid" preload="none" muted loop playsinline></video>
 </div>
 
 <script>
