@@ -1056,6 +1056,34 @@ main, footer { position: relative; z-index: 2; }
   transition: opacity 0.5s 0.36s cubic-bezier(0.16,1,0.3,1), transform 0.6s 0.36s cubic-bezier(0.34,1.56,0.64,1);
 }
 .ct-active .ct-verdict { opacity: 1; transform: scale(1); }
+/* Scene A2: KvButton visual */
+.ct-btn-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.ct-btn-row { display: flex; gap: 8px; justify-content: center; }
+.ct-btn {
+  display: inline-flex; align-items: center; height: 30px; padding: 0 14px;
+  border-radius: 10px; border: 1px solid transparent;
+  font-family: var(--font-body); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.01em;
+  opacity: 0; transform: translateY(6px) scale(0.92);
+  transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ct-active .ct-btn { opacity: 1; transform: translateY(0) scale(1); }
+.ct-active .ct-btn.d1 { transition-delay: 0.05s; }
+.ct-active .ct-btn.d2 { transition-delay: 0.13s; }
+.ct-active .ct-btn.d3 { transition-delay: 0.21s; }
+.ct-active .ct-btn.d4 { transition-delay: 0.29s; }
+.ct-active .ct-btn.d5 { transition-delay: 0.37s; }
+.ct-active .ct-btn.d6 { transition-delay: 0.45s; }
+.ct-btn-primary   { background: #276a43; color: #ffffff; }
+.ct-btn-secondary { background: #ffffff; color: #212121; border-color: #212121; }
+.ct-btn-ghost     { background: transparent; color: #223829; }
+.ct-btn-danger    { background: #e0988d; color: #5c2a22; }
+.ct-btn-caution   { background: #f8cd69; color: #593207; }
+.ct-btn-link      { background: #223829; color: #edf4f1; }
+.ct-btn-sub {
+  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em;
+  color: var(--ink-muted); opacity: 0; transition: opacity 0.4s 0.55s;
+}
+.ct-active .ct-btn-sub { opacity: 0.6; }
 /* Scene B: Rebind lines */
 .ct-rule-block { width: 100%; max-width: 300px; font-family: var(--font-mono); font-size: 0.5rem; line-height: 1.9; }
 .ct-rule-line {
@@ -1777,26 +1805,32 @@ footer {
                 <rect width="100%" height="100%" fill="url(#ctGrid)"/>
               </svg>
 
-              <!-- Scene A: The rule -->
+              <!-- Scene A: KvButton visual -->
               <div class="ct-reel-scene ct-scene-a">
+                <div class="ct-reel-label">KvButton &middot; 6 Variants</div>
+                <div class="ct-btn-rows">
+                  <div class="ct-btn-row">
+                    <span class="ct-btn ct-btn-primary d1">Lend $25</span>
+                    <span class="ct-btn ct-btn-secondary d2">Learn more</span>
+                    <span class="ct-btn ct-btn-ghost d3">Dismiss</span>
+                  </div>
+                  <div class="ct-btn-row">
+                    <span class="ct-btn ct-btn-danger d4">Delete</span>
+                    <span class="ct-btn ct-btn-caution d5">Review</span>
+                    <span class="ct-btn ct-btn-link d6">Sign in</span>
+                  </div>
+                </div>
+                <div class="ct-btn-sub">60 variants &middot; every value a token</div>
+              </div>
+
+              <!-- Scene B: The rule -->
+              <div class="ct-reel-scene ct-scene-b">
                 <div class="ct-reel-label">The Rule</div>
                 <div class="ct-conflict">
                   <span class="ct-conflict-line"><span class="ct-conflict-figma">figma said</span> 3 button sizes</span>
                   <span class="ct-conflict-line"><span class="ct-conflict-code">code shipped</span> 2 button sizes</span>
                 </div>
                 <div class="ct-verdict">code wins.</div>
-              </div>
-
-              <!-- Scene B: Rebind -->
-              <div class="ct-reel-scene ct-scene-b">
-                <div class="ct-reel-label">Rebuilt on Tokens</div>
-                <div class="ct-rule-block">
-                  <div class="ct-rule-line"><span class="ct-rule-role">button/background</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">background.action</span></div>
-                  <div class="ct-rule-line"><span class="ct-rule-role">button/spinner</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">per-variant token</span></div>
-                  <div class="ct-rule-line"><span class="ct-rule-role">tooltip/surface</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">fixed neutral &middot; 16.1:1</span></div>
-                  <div class="ct-rule-line"><span class="ct-rule-role">border/weight</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">1px rest &middot; 2px emphasis</span></div>
-                  <div class="ct-rule-line"><span class="ct-rule-role">spinner/path</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">SVG from Vue source</span></div>
-                </div>
               </div>
 
               <!-- Scene C: Impact -->

@@ -1380,6 +1380,165 @@ footer {
   .gallery-panel.active { animation: none !important; }
   .gallery-img { transition: none !important; }
 }
+
+/* ── Live token widgets (values are the real Ecosystem 2026 tokens) ── */
+.kv-lab {
+  margin-top: 2.5rem; padding: clamp(1.25rem, 3vw, 1.875rem);
+  background: var(--glass-bg); border-radius: var(--radius-lg);
+  border-top: 1px solid var(--glass-hi); border-left: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 12px 40px rgba(37,37,32,0.05);
+}
+.kv-lab-eyebrow { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.625rem; }
+.kv-lab-intro { font-size: 0.875rem; color: var(--ink-mid); line-height: 1.65; margin-bottom: 1.25rem; max-width: 64ch; }
+.kv-lab-note { font-family: var(--font-mono); font-size: 0.625rem; color: var(--ink-muted); margin-top: 1rem; line-height: 1.7; }
+.kv-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+.kv-pill-btn {
+  font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em;
+  padding: 0.45rem 0.95rem; border-radius: 999px; border: 1px solid rgba(92,110,77,0.28);
+  background: transparent; color: var(--ink-mid); cursor: pointer;
+  transition: background 0.25s var(--ease-silk), color 0.25s, border-color 0.25s;
+}
+.kv-pill-btn:hover { border-color: var(--sage); color: var(--sage); }
+.kv-pill-btn.active { background: var(--sage); border-color: var(--sage); color: #fff; }
+
+/* The .kv scope carries the real alias tokens; [data-theme] remaps them
+   exactly as tokens.css does on the reference site. */
+.kv {
+  --text-primary:#223829; --text-primary-inverse:#edf4f1;
+  --text-secondary:#505050; --text-secondary-button:#212121;
+  --text-action:#276a43; --text-caution:#593207; --text-danger:#5c2a22;
+  --background-primary:#ffffff; --background-primary-inverse:#223829;
+  --background-secondary:#edf4f1; --background-tertiary:#c4c4c4;
+  --background-action:#276a43; --background-action-highlight:#223829;
+  --background-action-secondary:#ffffff; --background-action-secondary-highlight:#edf4f1;
+  --background-primary-disabled:#276a434d;
+  --background-caution:#f8cd69; --background-caution-highlight:#f8f2e6;
+  --background-danger:#e0988d; --background-danger-highlight:#f9f0ef;
+  --border-secondary-button:#212121; --border-tertiary:#c4c4c4;
+  --heading-underline-primary:#2aa967;
+}
+.kv[data-theme="green-light"] {
+  --background-primary:#edf4f1; --background-secondary:#ffffff;
+  --background-action-secondary:#edf4f1; --background-action-secondary-highlight:#ffffff;
+}
+.kv[data-theme="green-dark"] {
+  --text-primary:#edf4f1; --text-primary-inverse:#223829; --text-secondary:#c4c4c4;
+  --text-secondary-button:#edf4f1; --text-action:#78c79f;
+  --background-primary:#223829; --background-primary-inverse:#ffffff;
+  --background-secondary:#276a43; --background-action:#78c79f; --background-action-highlight:#edf4f1;
+  --background-action-secondary:#223829; --background-action-secondary-highlight:#276a43;
+  --border-secondary-button:#edf4f1; --border-tertiary:#78c79f; --heading-underline-primary:#78c79f;
+}
+.kv[data-theme="marigold"] {
+  --text-primary:#593207; --text-primary-inverse:#f8f2e6; --text-secondary-button:#593207;
+  --text-action:#996210;
+  --background-primary:#f8f2e6; --background-primary-inverse:#593207; --background-secondary:#ffffff;
+  --background-action:#996210; --background-action-highlight:#593207;
+  --background-action-secondary:#f8f2e6; --background-action-secondary-highlight:#ffffff;
+  --background-primary-disabled:#9962104d;
+  --border-secondary-button:#593207; --border-tertiary:#ffffff; --heading-underline-primary:#f8cd69;
+}
+.kv[data-theme="stone"] {
+  --text-primary:#2e271e; --text-primary-inverse:#f3f1ef; --text-secondary-button:#635544;
+  --text-action:#635544;
+  --background-primary:#f3f1ef; --background-primary-inverse:#2e271e; --background-secondary:#ffffff;
+  --background-action:#635544; --background-action-highlight:#2e271e;
+  --background-action-secondary:#f3f1ef; --background-action-secondary-highlight:#ffffff;
+  --background-primary-disabled:#6355444d;
+  --border-secondary-button:#635544; --border-tertiary:#ffffff; --heading-underline-primary:#aa9e8d;
+}
+
+/* Theme stage: a mini loan card rendered on the tokens */
+.kv-stage {
+  background: var(--background-primary); border-radius: 16px;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: background 0.45s var(--ease-silk);
+  display: flex; justify-content: center;
+}
+.kv-card {
+  background: var(--background-secondary); border-radius: 16px;
+  padding: 24px; width: 100%; max-width: 380px;
+  transition: background 0.45s var(--ease-silk);
+}
+.kv-kicker {
+  font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--text-action); margin-bottom: 8px;
+  transition: color 0.45s var(--ease-silk);
+}
+.kv-h {
+  font-family: var(--font-body); font-size: 1.125rem; font-weight: 600;
+  color: var(--text-primary); line-height: 1.35; margin-bottom: 4px;
+  transition: color 0.45s var(--ease-silk);
+}
+.kv-h em { font-style: normal; box-shadow: inset 0 -6px 0 var(--heading-underline-primary); transition: box-shadow 0.45s var(--ease-silk); }
+.kv-p { font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 14px; transition: color 0.45s var(--ease-silk); }
+.kv-progress {
+  height: 6px; border-radius: 9999px; background: var(--background-tertiary);
+  overflow: hidden; margin-bottom: 18px;
+}
+.kv-progress span { display: block; height: 100%; border-radius: 9999px; background: var(--background-action); transition: background 0.45s var(--ease-silk); }
+.kv-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* KvButton, built from the Mapped - Buttons tokens */
+.kv-b {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-body); font-weight: 500; cursor: pointer; white-space: nowrap;
+  height: 48px; padding: 0 24px; border-radius: 16px; font-size: 1rem;
+  background: var(--bBg); color: var(--bTx);
+  border: var(--bBw, 0px) solid var(--bBd, transparent);
+  transition: background 0.2s var(--ease-silk), color 0.2s, border-color 0.2s;
+}
+.kv-b:hover, .kv-b[data-state="hover"], .kv-b[data-state="active"] { background: var(--bBgH); color: var(--bTxH); }
+.kv-b[data-state="disabled"] { background: var(--bBgD); color: var(--bTxD); opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.kv-b[data-state="loading"] { pointer-events: none; }
+.kv-b[data-state="loading"] .kv-bl { visibility: hidden; }
+.kv-b[data-state="loading"]::after {
+  content: ''; position: absolute; width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(117,117,117,0.3); border-top-color: var(--bSp);
+  animation: kvspin 0.8s linear infinite;
+}
+@keyframes kvspin { to { transform: rotate(360deg); } }
+.kvb-primary   { --bBg:var(--background-action); --bTx:var(--text-primary-inverse); --bBgH:var(--background-action-highlight); --bTxH:var(--text-primary-inverse); --bBgD:var(--background-primary-disabled); --bTxD:var(--text-primary-inverse); --bSp:#ffffff; }
+.kvb-secondary { --bBg:var(--background-action-secondary); --bTx:var(--text-secondary-button); --bBd:var(--border-secondary-button); --bBw:1px; --bBgH:var(--background-action-secondary-highlight); --bTxH:var(--text-secondary-button); --bBgD:#ffffff; --bTxD:#2121214d; --bSp:#000000; }
+.kvb-danger    { --bBg:var(--background-danger); --bTx:var(--text-danger); --bBgH:var(--background-danger-highlight); --bTxH:var(--text-danger); --bBgD:var(--background-danger); --bTxD:var(--text-danger); --bSp:#ffffff; }
+.kvb-link      { --bBg:var(--background-primary-inverse); --bTx:var(--text-primary-inverse); --bBgH:var(--background-action); --bTxH:var(--text-primary-inverse); --bBgD:var(--background-primary-inverse); --bTxD:var(--text-primary-inverse); --bSp:#ffffff; }
+.kvb-ghost     { --bBg:transparent; --bTx:var(--text-primary); --bBgH:var(--background-secondary); --bTxH:var(--text-primary); --bBgD:var(--background-primary); --bTxD:var(--text-primary); --bSp:#2aa967; }
+.kvb-caution   { --bBg:var(--background-caution); --bTx:var(--text-caution); --bBgH:var(--background-caution-highlight); --bTxH:var(--text-caution); --bBgD:var(--background-caution); --bTxD:var(--text-caution); --bSp:#000000; }
+
+/* Token readout under the stage */
+.kv-readout { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.125rem; }
+.kv-ro-line { display: inline-flex; align-items: center; gap: 0.45em; font-family: var(--font-mono); font-size: 0.625rem; }
+.kv-ro-name { color: var(--ink-muted); }
+.kv-ro-arrow { color: var(--sand); }
+.kv-ro-chip { width: 11px; height: 11px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.12); display: inline-block; }
+.kv-ro-val { color: var(--sage); }
+
+/* The 60-variant stage */
+.kv-btn-stage {
+  background: var(--background-primary); border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: clamp(1.25rem, 3.5vw, 2rem);
+}
+.kv-btn-grid { display: flex; flex-wrap: wrap; gap: 18px 16px; justify-content: center; }
+.kv-cell { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.kv-cell-name { font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; color: var(--ink-muted); }
+.kv-btn-stage[data-size="sm"] .kv-b { height: 32px; padding: 0 16px; border-radius: 8px; font-size: 0.875rem; }
+.kv-wall-count { font-family: var(--font-mono); font-size: 0.625rem; color: var(--ink-muted); letter-spacing: 0.06em; }
+
+/* Machine view: real llms-full.txt content in the tooltip-dark chip */
+.kv-machine {
+  background: #212121; border-radius: var(--radius);
+  padding: 1.125rem 1.25rem; margin: 0.875rem 0 1.25rem;
+  font-family: var(--font-mono); font-size: 0.625rem; line-height: 1.8;
+  color: #cfccc4; max-height: 380px; overflow-y: auto;
+  white-space: pre-wrap; word-break: break-word;
+}
+.kv-machine::-webkit-scrollbar { width: 4px; }
+.kv-machine::-webkit-scrollbar-thumb { background: #505050; }
+.kv-machine .mh { color: #8a9e78; font-weight: 500; }
+.kv-machine .mk { color: #f8cd69; }
+
 .demo-cards.single { grid-template-columns: 1fr; }
 .demo-cards.single .demo-iframe-wrap { aspect-ratio: 4/2.2; }
 </style>
@@ -1509,6 +1668,33 @@ footer {
       </div>
     </div>
 
+
+    <div class="kv-lab reveal">
+      <div class="kv-lab-eyebrow">&#9678;&nbsp; Try It: One Card, Five Themes</div>
+      <p class="kv-lab-intro">This card is not five designs. It is one set of components whose alias tokens re-resolve when the theme mode changes, exactly how it works in the Figma library and in tokens.css. The hex values below are the real Ecosystem 2026 tokens, live.</p>
+      <div class="kv-pills" role="tablist" aria-label="Switch color theme">
+        <button class="kv-pill-btn active" data-kv-theme="default" role="tab" aria-selected="true">Default</button>
+        <button class="kv-pill-btn" data-kv-theme="green-light" role="tab" aria-selected="false">Green Light</button>
+        <button class="kv-pill-btn" data-kv-theme="green-dark" role="tab" aria-selected="false">Green Dark</button>
+        <button class="kv-pill-btn" data-kv-theme="marigold" role="tab" aria-selected="false">Marigold</button>
+        <button class="kv-pill-btn" data-kv-theme="stone" role="tab" aria-selected="false">Stone</button>
+      </div>
+      <div class="kv kv-stage" data-theme="default" id="kvThemeStage">
+        <div class="kv-card">
+          <div class="kv-kicker">Fund a loan</div>
+          <h4 class="kv-h">Amina is <em>expanding</em> her bakery</h4>
+          <p class="kv-p">$375 to go &middot; repaid over 14 months</p>
+          <div class="kv-progress"><span style="width:62%"></span></div>
+          <div class="kv-row">
+            <button type="button" class="kv-b kvb-primary"><span class="kv-bl">Lend $25</span></button>
+            <button type="button" class="kv-b kvb-secondary"><span class="kv-bl">Learn more</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="kv-readout" id="kvReadout" aria-live="polite"></div>
+      <p class="kv-lab-note">Colors and geometry are the shipped token values. Type is approximated: the real components use Kiva Post Grot, which stays on Kiva surfaces.</p>
+    </div>
+
     <div class="body-text reveal" style="margin-top: 2.5rem; margin-bottom: 0;">
       <p>Two disciplines keep the architecture from decaying. Literal values live only in the Global collection; everything mapped onto a component is an alias. And every variable is purpose-scoped, so background tokens only ever appear in fill pickers and radius tokens only in corner fields. The system nudges you toward the right token by hiding the wrong ones.</p>
     </div>
@@ -1555,21 +1741,49 @@ footer {
       </div>
     </div>
 
-    <div class="demo-cards single reveal">
-      <div class="demo-card-wrap after">
-        <div class="demo-card">
-          <div class="demo-card-badge">Live</div>
-          <div class="demo-card-title">The Components panel, rendering from the tokens</div>
-          <div class="demo-iframe-wrap" aria-hidden="true">
-            <iframe class="demo-iframe" src="https://linzhao0315.github.io/ds-ref/#components"
-                    title="Live component reference rendering from the token system"
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin"></iframe>
+    <div class="kv-lab reveal">
+      <div class="kv-lab-eyebrow">&#9678;&nbsp; The Whole Set, Rendered Live</div>
+      <p class="kv-lab-intro">These are not screenshots. All six variants are drawn from the Mapped button tokens, and the pills switch every button through its real sizes and states at once. Disabled is the documented opacity rule; the loading spinner arc is the per-variant color token.</p>
+      <div class="kv-pills" role="tablist" aria-label="Switch button size">
+        <button class="kv-pill-btn active" data-kv-size="lg" role="tab" aria-selected="true">Default &middot; 48px</button>
+        <button class="kv-pill-btn" data-kv-size="sm" role="tab" aria-selected="false">Small &middot; 32px</button>
+      </div>
+      <div class="kv-pills" role="tablist" aria-label="Switch button state">
+        <button class="kv-pill-btn active" data-kv-state="default" role="tab" aria-selected="true">Default</button>
+        <button class="kv-pill-btn" data-kv-state="hover" role="tab" aria-selected="false">Hover</button>
+        <button class="kv-pill-btn" data-kv-state="active" role="tab" aria-selected="false">Active</button>
+        <button class="kv-pill-btn" data-kv-state="disabled" role="tab" aria-selected="false">Disabled</button>
+        <button class="kv-pill-btn" data-kv-state="loading" role="tab" aria-selected="false">Loading</button>
+      </div>
+      <div class="kv kv-btn-stage" data-size="lg" id="kvWall">
+        <div class="kv-btn-grid">
+          <div class="kv-cell">
+            <button type="button" class="kv-b kvb-primary" data-state="default"><span class="kv-bl">Lend $25</span></button>
+            <span class="kv-cell-name">primary</span>
           </div>
-          <div class="demo-card-desc">This is an embed of the reference site, not a screenshot. The component demos here are driven by the same token values documented in the rest of the system, so if a token changes, this page changes.</div>
-          <a class="demo-link" href="https://linzhao0315.github.io/ds-ref/#components" target="_blank" rel="noopener" aria-label="Open the live component reference in a new tab">Open the live reference &rarr;</a>
+          <div class="kv-cell">
+            <button type="button" class="kv-b kvb-secondary" data-state="default"><span class="kv-bl">Learn more</span></button>
+            <span class="kv-cell-name">secondary</span>
+          </div>
+          <div class="kv-cell">
+            <button type="button" class="kv-b kvb-danger" data-state="default"><span class="kv-bl">Delete</span></button>
+            <span class="kv-cell-name">danger</span>
+          </div>
+          <div class="kv-cell">
+            <button type="button" class="kv-b kvb-link" data-state="default"><span class="kv-bl">Sign in</span></button>
+            <span class="kv-cell-name">link</span>
+          </div>
+          <div class="kv-cell">
+            <button type="button" class="kv-b kvb-ghost" data-state="default"><span class="kv-bl">Dismiss</span></button>
+            <span class="kv-cell-name">ghost</span>
+          </div>
+          <div class="kv-cell">
+            <button type="button" class="kv-b kvb-caution" data-state="default"><span class="kv-bl">Review</span></button>
+            <span class="kv-cell-name">caution</span>
+          </div>
         </div>
       </div>
+      <p class="kv-lab-note" style="margin-top:0.875rem;"><span class="kv-wall-count">6 variants &times; 2 sizes &times; 5 states = 60.</span> In the Default state the buttons are real: hover them. Hover and active resolve to the same tokens by design; the difference in product is the press interaction, not the color.</p>
     </div>
   </div>
 </section>
@@ -1682,13 +1896,37 @@ footer {
         <div class="demo-card">
           <div class="demo-card-badge">For AI Agents</div>
           <div class="demo-card-title">The same truth, flattened</div>
-          <div class="demo-iframe-wrap" aria-hidden="true">
-            <iframe class="demo-iframe" src="https://linzhao0315.github.io/ds-ref/llms-full.txt"
-                    title="Machine-readable design system specification"
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin"></iframe>
-          </div>
-          <div class="demo-card-desc">Rules, component specifications, and full token tables in one flat markdown file. What an AI agent reads instead of guessing. Generated from the same tokens.json as everything else.</div>
+          <div class="kv-machine" tabindex="0" aria-label="Excerpt of the machine-readable design system file"><span class="mh"># Kiva Ecosystem 2026 Design System &middot; full reference for AI agents</span>
+
+<span class="mh">## How to use this file</span>
+<span class="mk">1.</span> NEVER hardcode visual values. Every color, size, radius, spacing,
+   and font in generated UI must map to a token named below.
+<span class="mk">2.</span> Prefer the highest applicable layer: component token (button/*,
+   input/*, tooltip/*) &rarr; semantic alias (text/*, background/*,
+   border/*) &rarr; Global primitive.
+<span class="mk">3.</span> Themes: the five Alias-Color modes remap the SAME alias names.
+   Generate against alias names, not resolved hexes, and theming
+   works for free.
+<span class="mk">5.</span> After generating, audit your output: grep for hex colors, px
+   values not on the 4px grain, radii not in {0,4,8,12,16,20,24,9999}.
+   Each hit is a defect: replace with a token.
+
+<span class="mh">### Button (KvButton)</span>
+- 6 variants: primary, secondary, danger, link, ghost, caution.
+  2 sizes: default (48px) and small (32px). 5 states.
+- Only secondary has a visible border (1px, border/secondary-button).
+- Disabled = disabled tokens + 40% whole-button opacity.
+- Loading: hide label, show spinner; arc color = button/color/spinner
+  (white on primary/danger/link, black on secondary/caution,
+  brand green on ghost).
+- Rules: one primary per view; danger for destructive, caution for
+  needs-attention, link for navigation-as-button.
+
+<span class="mh">### Tooltip (KvTooltip)</span>
+- THEME-INDEPENDENT by design: two fixed neutral styles. Dark chip
+  #212121 + #ffffff, light chip inverted. Contrast 16.1:1 (AAA).
+  Darkest gray instead of pure black to avoid halation.</div>
+          <div class="demo-card-desc">A real excerpt, embedded above: rules, component specifications, and full token tables in one flat markdown file. What an AI agent reads instead of guessing. Generated from the same tokens.json as everything else.</div>
           <a class="demo-link" href="https://linzhao0315.github.io/ds-ref/llms-full.txt" target="_blank" rel="noopener" aria-label="Open the machine-readable specification in a new tab">Open llms-full.txt &rarr;</a>
         </div>
       </div>
@@ -2090,6 +2328,54 @@ setTimeout(() => {
     img.setAttribute('tabindex', '0');
     img.setAttribute('role', 'button');
   });
+})();
+
+/* ── 11. Live token widgets ───────────────────────────────────── */
+(function() {
+  const stage = document.getElementById('kvThemeStage');
+  if (!stage) return;
+  const pills = document.querySelectorAll('[data-kv-theme]');
+  const readout = document.getElementById('kvReadout');
+  const tokens = [
+    ['background/primary', '--background-primary'],
+    ['background/secondary', '--background-secondary'],
+    ['background/action', '--background-action'],
+    ['text/primary', '--text-primary']
+  ];
+  function upd() {
+    const cs = getComputedStyle(stage);
+    readout.innerHTML = tokens.map(([name, v]) => {
+      const val = cs.getPropertyValue(v).trim();
+      return '<span class="kv-ro-line"><span class="kv-ro-name">' + name +
+             '</span><span class="kv-ro-arrow">&rarr;</span><span class="kv-ro-chip" style="background:' + val +
+             '"></span><span class="kv-ro-val">' + val + '</span></span>';
+    }).join('');
+  }
+  pills.forEach(p => p.addEventListener('click', () => {
+    pills.forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
+    p.classList.add('active');
+    p.setAttribute('aria-selected', 'true');
+    stage.dataset.theme = p.dataset.kvTheme;
+    requestAnimationFrame(upd);
+  }));
+  upd();
+})();
+
+(function() {
+  const wall = document.getElementById('kvWall');
+  if (!wall) return;
+  document.querySelectorAll('[data-kv-size]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-kv-size]').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
+    b.classList.add('active');
+    b.setAttribute('aria-selected', 'true');
+    wall.dataset.size = b.dataset.kvSize;
+  }));
+  document.querySelectorAll('[data-kv-state]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-kv-state]').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
+    b.classList.add('active');
+    b.setAttribute('aria-selected', 'true');
+    wall.querySelectorAll('.kv-b').forEach(btn => btn.dataset.state = b.dataset.kvState);
+  }));
 })();
 </script>
 <script src="portfolio-assets/auth-gate.js"></script>
