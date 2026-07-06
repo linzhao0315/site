@@ -1084,6 +1084,33 @@ main, footer { position: relative; z-index: 2; }
   color: var(--ink-muted); opacity: 0; transition: opacity 0.4s 0.55s;
 }
 .ct-active .ct-btn-sub { opacity: 0.6; }
+/* Loose, airy composition for scenes A and A2 */
+.ct-loose { position: relative; width: min(300px, 92%); height: 106px; margin-bottom: 8px; }
+.ct-ls { position: absolute; opacity: 0; transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1); }
+.ct-active .ct-ls { opacity: 1; }
+.ct-active .ct-ls.d1 { transition-delay: 0.05s; }
+.ct-active .ct-ls.d2 { transition-delay: 0.14s; }
+.ct-active .ct-ls.d3 { transition-delay: 0.23s; }
+.ct-active .ct-ls.d4 { transition-delay: 0.32s; }
+.ct-active .ct-ls.d5 { transition-delay: 0.41s; }
+.ct-active .ct-ls.d6 { transition-delay: 0.5s; }
+.ct-ls > * { animation: ctdrift var(--dur, 4.2s) ease-in-out var(--del, 0s) infinite alternate; }
+@keyframes ctdrift { from { translate: 0 2px; } to { translate: 0 -4px; } }
+.ct-ls .ct-btn { opacity: 1; transform: none; transition: none; }
+.ct-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 88px; height: 30px; border-radius: 10px;
+  border: 1.5px dashed var(--sand);
+  font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; color: var(--ink-faint);
+}
+.ct-anno {
+  font-family: var(--font-mono); font-size: 0.4375rem; letter-spacing: 0.08em;
+  color: var(--sage); opacity: 0.8; white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) { .ct-ls > * { animation: none; } }
+/* Whole card is clickable; reel dots switch scenes */
+.proj-card { cursor: pointer; }
+.ds-bar-dot, .sk-dot, .ct-dot, .uw-dot, .sh-dot { cursor: pointer; }
 /* Scene: kit sampler */
 .ct-kit-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .ct-kit-item {
@@ -1847,33 +1874,29 @@ footer {
 
               <!-- Scene A: KvButton visual -->
               <div class="ct-reel-scene ct-scene-a">
-                <div class="ct-reel-label">KvButton &middot; 6 Variants</div>
-                <div class="ct-btn-rows">
-                  <div class="ct-btn-row">
-                    <span class="ct-btn ct-btn-primary d1">Lend $25</span>
-                    <span class="ct-btn ct-btn-secondary d2">Learn more</span>
-                    <span class="ct-btn ct-btn-ghost d3">Dismiss</span>
-                  </div>
-                  <div class="ct-btn-row">
-                    <span class="ct-btn ct-btn-danger d4">Delete</span>
-                    <span class="ct-btn ct-btn-caution d5">Review</span>
-                    <span class="ct-btn ct-btn-link d6">Sign in</span>
-                  </div>
+                <div class="ct-reel-label">KvButton</div>
+                <div class="ct-loose">
+                  <span class="ct-ls d1" style="left:2px; top:26px;"><span class="ct-btn ct-btn-primary" style="height:34px; font-size:0.75rem; padding:0 16px; rotate:-2deg; --dur:4.6s;">Lend $25</span></span>
+                  <span class="ct-ls d2" style="left:128px; top:4px;"><span class="ct-btn ct-btn-secondary" style="rotate:2.5deg; --dur:5.2s; --del:0.4s;">Learn more</span></span>
+                  <span class="ct-ls d3" style="left:158px; top:60px;"><span class="ct-btn ct-btn-caution" style="rotate:-3deg; scale:0.92; --dur:4.9s; --del:0.8s;">Review</span></span>
+                  <span class="ct-ls d4" style="right:0; top:26px;"><span class="ct-btn-outline" style="rotate:4deg; opacity:0.75; --dur:5.5s; --del:0.2s;">&times;60</span></span>
+                  <span class="ct-ls d5" style="left:6px; bottom:0;"><span class="ct-anno" style="--dur:6s; --del:0.6s;">button/background &rarr; background/action</span></span>
                 </div>
-                <div class="ct-btn-sub">60 variants &middot; every value a token</div>
+                <div class="ct-btn-sub">6 variants &middot; every value a token</div>
               </div>
 
               <!-- Scene A2: kit sampler -->
               <div class="ct-reel-scene ct-scene-kit">
                 <div class="ct-reel-label">And the Rest of the Kit</div>
-                <div class="ct-kit-row">
-                  <span class="ct-kit-tip ct-kit-item d1">Repaid 98%</span>
-                  <span class="ct-kit-pill ct-kit-item d2"><i></i>Funded</span>
-                  <span class="ct-kit-input ct-kit-item d3"><i></i>you@example.org</span>
-                  <span class="ct-kit-spin ct-kit-item d4" aria-hidden="true"></span>
-                  <span class="ct-kit-ava ct-kit-item d5">K</span>
+                <div class="ct-loose">
+                  <span class="ct-ls d1" style="left:6px; top:2px;"><span class="ct-kit-tip" style="rotate:-3deg; --dur:4.8s;">Repaid 98%</span></span>
+                  <span class="ct-ls d2" style="right:34px; top:0;"><span class="ct-kit-pill" style="rotate:2deg; --dur:5.4s; --del:0.5s;"><i></i>Funded</span></span>
+                  <span class="ct-ls d3" style="left:74px; top:46px;"><span class="ct-kit-input" style="rotate:-1deg; --dur:5s; --del:0.9s;"><i></i>you@example.org</span></span>
+                  <span class="ct-ls d4" style="right:64px; bottom:34px;"><span class="ct-kit-spin" aria-hidden="true" style="--dur:4.4s; --del:0.3s;"></span></span>
+                  <span class="ct-ls d5" style="right:6px; bottom:4px;"><span class="ct-kit-ava" style="--dur:5.8s; --del:0.7s;">K</span></span>
+                  <span class="ct-ls d6" style="left:8px; bottom:6px;"><span class="ct-anno" style="--dur:6.2s; --del:1s;">10 components &middot; one token source</span></span>
                 </div>
-                <div class="ct-btn-sub">tooltip &middot; pills &middot; forms &middot; loading &middot; avatar &middot; 10 components</div>
+                <div class="ct-btn-sub">tooltip &middot; pills &middot; forms &middot; loading &middot; avatar</div>
               </div>
 
               <!-- Scene B: The rule -->
@@ -2816,6 +2839,11 @@ if (!supportsScrollDriven) {
 
   function next() { show(current + 1); }
 
+  dots.forEach((d, i) => d.addEventListener('click', e => {
+    e.stopPropagation();
+    show(i);
+  }));
+
   const reelIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !timer) {
@@ -2853,6 +2881,11 @@ if (!supportsScrollDriven) {
   }
 
   function next() { show(current + 1); }
+
+  dots.forEach((d, i) => d.addEventListener('click', e => {
+    e.stopPropagation();
+    show(i);
+  }));
 
   const reelIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -2892,6 +2925,11 @@ if (!supportsScrollDriven) {
 
   function next() { show(current + 1); }
 
+  dots.forEach((d, i) => d.addEventListener('click', e => {
+    e.stopPropagation();
+    show(i);
+  }));
+
   const reelIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !timer) {
@@ -2929,6 +2967,11 @@ if (!supportsScrollDriven) {
   }
 
   function next() { show(current + 1); }
+
+  dots.forEach((d, i) => d.addEventListener('click', e => {
+    e.stopPropagation();
+    show(i);
+  }));
 
   const reelIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -2968,6 +3011,11 @@ if (!supportsScrollDriven) {
 
   function next() { show(current + 1); }
 
+  dots.forEach((d, i) => d.addEventListener('click', e => {
+    e.stopPropagation();
+    show(i);
+  }));
+
   const reelIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !timer) {
@@ -2981,6 +3029,25 @@ if (!supportsScrollDriven) {
   }, { threshold: 0.15 });
 
   reelIO.observe(reel);
+})();
+
+/* ================================================================
+   16. Whole project card is clickable (except links and reel dots)
+   ================================================================ */
+(function() {
+  document.querySelectorAll('.proj-card').forEach(card => {
+    const link = card.querySelector('.proj-link');
+    if (!link) return;
+    function go(e) {
+      if (e.target.closest('a, button, .ds-bar-dot, .sk-dot, .ct-dot, .uw-dot, .sh-dot')) return;
+      if (window.getSelection && String(window.getSelection())) return;
+      window.location.href = link.getAttribute('href');
+    }
+    card.addEventListener('click', go);
+    card.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target === card) { e.preventDefault(); window.location.href = link.getAttribute('href'); }
+    });
+  });
 })();
 </script>
 </body>
