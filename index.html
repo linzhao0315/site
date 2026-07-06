@@ -1097,11 +1097,19 @@ main, footer { position: relative; z-index: 2; }
 .ct-ls > * { animation: ctdrift var(--dur, 4.2s) ease-in-out var(--del, 0s) infinite alternate; }
 @keyframes ctdrift { from { translate: 0 2px; } to { translate: 0 -4px; } }
 .ct-ls .ct-btn { opacity: 1; transform: none; transition: none; }
-.ct-btn-outline {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 88px; height: 30px; border-radius: 10px;
-  border: 1.5px dashed var(--sand);
-  font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; color: var(--ink-faint);
+.ct-stack { position: relative; display: inline-block; }
+.ct-stack .ct-btn { position: relative; z-index: 2; }
+.ct-ghost {
+  position: absolute; inset: 0; z-index: 1;
+  border: 1.5px solid var(--sand); border-radius: 12px;
+  pointer-events: none;
+}
+.ct-ghost.g1 { translate: 9px -7px; rotate: 2deg; opacity: 0.5; }
+.ct-ghost.g2 { translate: 18px -14px; rotate: 4.5deg; opacity: 0.26; }
+.ct-stack-label {
+  position: absolute; right: -30px; top: -24px; z-index: 3;
+  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.1em;
+  color: var(--sage); opacity: 0.75; white-space: nowrap;
 }
 .ct-anno {
   font-family: var(--font-mono); font-size: 0.4375rem; letter-spacing: 0.08em;
@@ -1139,7 +1147,10 @@ main, footer { position: relative; z-index: 2; }
   background: #ffffff; border: 1.5px solid #276a43; border-radius: 5px;
   font-family: var(--font-body); font-size: 0.625rem; color: #9e9e9e;
 }
-.ct-kit-input i { width: 1px; height: 12px; background: #276a43; margin-right: 5px; animation: ctcaret 1.1s steps(1) infinite; }
+.ct-kit-input { min-width: 118px; }
+.ct-kit-input .ct-type { color: #223829; }
+.ct-kit-input i { width: 1px; height: 12px; background: #276a43; margin-left: 2px; flex: none; }
+.ct-kit-input.idle i { animation: ctcaret 1.1s steps(1) infinite; }
 @keyframes ctcaret { 50% { opacity: 0; } }
 .ct-kit-spin {
   display: inline-block; width: 18px; height: 18px; border-radius: 50%; flex: none;
@@ -1877,10 +1888,9 @@ footer {
               <div class="ct-reel-scene ct-scene-a">
                 <div class="ct-reel-label">KvButton</div>
                 <div class="ct-loose">
-                  <span class="ct-ls d1" style="left:4px; top:16px;"><span class="ct-btn ct-btn-primary" style="height:34px; font-size:0.75rem; padding:0 16px; rotate:-2deg; --dur:4.6s;">Lend $25</span></span>
-                  <span class="ct-ls d2" style="left:126px; top:2px;"><span class="ct-btn ct-btn-secondary" style="rotate:2deg; --dur:5.2s; --del:0.4s;">Learn more</span></span>
-                  <span class="ct-ls d3" style="left:152px; top:54px;"><span class="ct-btn ct-btn-caution" style="rotate:-2.5deg; scale:0.92; --dur:4.9s; --del:0.8s;">Review</span></span>
-                  <span class="ct-ls d4" style="right:2px; top:20px;"><span class="ct-btn-outline" style="rotate:3deg; opacity:0.7; --dur:5.5s; --del:0.2s;">&times;60</span></span>
+                  <span class="ct-ls d1" style="left:8px; top:34px;"><span class="ct-stack" style="--dur:4.6s;"><span class="ct-ghost g2" aria-hidden="true"></span><span class="ct-ghost g1" aria-hidden="true"></span><span class="ct-stack-label">&times;60</span><span class="ct-btn ct-btn-primary" style="height:34px; font-size:0.75rem; padding:0 16px; rotate:-2deg;">Lend $25</span></span></span>
+                  <span class="ct-ls d2" style="right:10px; top:0;"><span class="ct-btn ct-btn-secondary" style="rotate:2deg; --dur:5.2s; --del:0.4s;">Learn more</span></span>
+                  <span class="ct-ls d3" style="right:44px; top:56px;"><span class="ct-btn ct-btn-caution" style="rotate:-2.5deg; scale:0.92; --dur:4.9s; --del:0.8s;">Review</span></span>
                 </div>
                 <div class="ct-btn-sub">6 variants &times; 2 sizes &times; 5 states &middot; every value a token</div>
               </div>
@@ -1891,7 +1901,7 @@ footer {
                 <div class="ct-loose">
                   <span class="ct-ls d1" style="left:10px; top:2px;"><span class="ct-kit-tip" style="rotate:-2.5deg; --dur:4.8s;">Repaid 98%</span></span>
                   <span class="ct-ls d2" style="right:30px; top:4px;"><span class="ct-kit-pill" style="rotate:2deg; --dur:5.4s; --del:0.5s;"><i></i>Funded</span></span>
-                  <span class="ct-ls d3" style="left:64px; top:48px;"><span class="ct-kit-input" style="rotate:-1deg; --dur:5s; --del:0.9s;"><i></i>you@example.org</span></span>
+                  <span class="ct-ls d3" style="left:64px; top:48px;"><span class="ct-kit-input idle" id="ctTypeField" style="rotate:-1deg; --dur:5s; --del:0.9s;"><span class="ct-type" id="ctTypeText"></span><i aria-hidden="true"></i></span></span>
                   <span class="ct-ls d4" style="right:78px; top:48px;"><span class="ct-kit-spin" aria-hidden="true" style="--dur:4.4s; --del:0.3s;"></span></span>
                   <span class="ct-ls d5" style="right:16px; top:44px;"><span class="ct-kit-ava" style="--dur:5.8s; --del:0.7s;">K</span></span>
                 </div>
@@ -3028,6 +3038,46 @@ if (!supportsScrollDriven) {
   }, { threshold: 0.15 });
 
   reelIO.observe(reel);
+})();
+
+/* ================================================================
+   15b. CT REEL — typing loop in the kit scene input
+   ================================================================ */
+(function() {
+  const field = document.getElementById('ctTypeField');
+  const out = document.getElementById('ctTypeText');
+  if (!field || !out) return;
+  const FULL = 'you@example.org';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    out.textContent = FULL;
+    return;
+  }
+  let i = 0, deleting = false, t = null;
+  function step() {
+    if (!deleting) {
+      i++;
+      out.textContent = FULL.slice(0, i);
+      field.classList.remove('idle');
+      if (i === FULL.length) {
+        field.classList.add('idle');
+        deleting = true;
+        t = setTimeout(step, 2400);
+      } else {
+        t = setTimeout(step, 62 + Math.random() * 74);
+      }
+    } else {
+      i--;
+      out.textContent = FULL.slice(0, i);
+      if (i === 0) {
+        deleting = false;
+        field.classList.add('idle');
+        t = setTimeout(step, 1100);
+      } else {
+        t = setTimeout(step, 28);
+      }
+    }
+  }
+  t = setTimeout(step, 900);
 })();
 
 /* ================================================================
