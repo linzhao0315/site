@@ -493,6 +493,7 @@ main, footer { position: relative; z-index: 2; }
 /* Hide number badge on cards with animated reels */
 .proj-card:has(.ds-reel-host) .proj-num,
 .proj-card:has(.sk-reel-host) .proj-num,
+.proj-card:has(.ct-reel-host) .proj-num,
 .proj-card:has(.uw-reel-host) .proj-num,
 .proj-card:has(.sh-reel-host) .proj-num { display: none !important; }
 
@@ -992,6 +993,114 @@ main, footer { position: relative; z-index: 2; }
   display: flex; gap: 0.6em; align-items: center; opacity: 0; transition: opacity 0.4s 0.5s;
 }
 .sk-active .sk-impact-sub { opacity: 0.6; }
+
+/* ================================================================
+   CT REEL — Code as Source of Truth inline showcase
+   ================================================================ */
+.ct-reel-host { position: relative; }
+.ct-reel {
+  position: relative; width: 100%; height: 236px;
+  overflow: hidden; border-radius: 18px;
+  background: linear-gradient(155deg, #F7F4ED 0%, #EDE8DE 50%, #E8E4DA 100%);
+}
+.ct-reel-grid {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0.7; pointer-events: none;
+}
+.ct-reel-scene {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 28px 24px 18px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  pointer-events: none;
+}
+.ct-reel-scene.ct-active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.ct-reel-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px; z-index: 10;
+}
+.ct-reel-bar-label {
+  font-family: var(--font-mono); font-size: 0.4375rem;
+  letter-spacing: 0.22em; color: var(--sage); opacity: 0.6;
+}
+.ct-reel-bar-dots { display: flex; gap: 5px; align-items: center; }
+.ct-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--sand); opacity: 0.35;
+  transition: opacity 0.4s, background 0.4s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ct-dot.ct-dot-active { opacity: 1; background: var(--sage); transform: scale(1.3); }
+.ct-reel-label {
+  font-family: var(--font-mono); font-size: 0.5rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 10px; opacity: 0.7;
+}
+/* Scene A: The rule */
+.ct-conflict {
+  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em;
+  color: var(--ink-muted); line-height: 2; text-align: center; margin-bottom: 10px;
+}
+.ct-conflict-line { opacity: 0; transform: translateY(4px); transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.4s; display: block; }
+.ct-active .ct-conflict-line { opacity: 0.7; transform: translateY(0); }
+.ct-active .ct-conflict-line:nth-child(1) { transition-delay: 0.05s; }
+.ct-active .ct-conflict-line:nth-child(2) { transition-delay: 0.18s; }
+.ct-conflict-figma { color: var(--terracotta); }
+.ct-conflict-code { color: var(--sage); }
+.ct-verdict {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 300;
+  font-style: italic; letter-spacing: -0.02em; color: var(--sage); line-height: 1;
+  opacity: 0; transform: scale(0.85);
+  transition: opacity 0.5s 0.36s cubic-bezier(0.16,1,0.3,1), transform 0.6s 0.36s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ct-active .ct-verdict { opacity: 1; transform: scale(1); }
+/* Scene B: Rebind lines */
+.ct-rule-block { width: 100%; max-width: 300px; font-family: var(--font-mono); font-size: 0.5rem; line-height: 1.9; }
+.ct-rule-line {
+  display: flex; gap: 8px; align-items: center;
+  opacity: 0; transform: translateX(8px);
+  transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  color: var(--ink-muted); border-bottom: 1px solid rgba(92,110,77,0.06); padding: 2px 0;
+}
+.ct-rule-line:last-child { border-bottom: none; }
+.ct-active .ct-rule-line { opacity: 1; transform: translateX(0); }
+.ct-active .ct-rule-line:nth-child(1) { transition-delay: 0.05s; }
+.ct-active .ct-rule-line:nth-child(2) { transition-delay: 0.14s; }
+.ct-active .ct-rule-line:nth-child(3) { transition-delay: 0.23s; }
+.ct-active .ct-rule-line:nth-child(4) { transition-delay: 0.32s; }
+.ct-active .ct-rule-line:nth-child(5) { transition-delay: 0.41s; }
+.ct-rule-role { color: var(--ink-faint); min-width: 96px; }
+.ct-rule-arrow { color: var(--sand); }
+.ct-rule-token { color: var(--sage); }
+/* Scene C: Impact */
+.ct-impact-before-after { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+.ct-impact-num {
+  font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; font-style: italic;
+  letter-spacing: -0.04em; line-height: 1;
+  opacity: 0; transform: scale(0.8);
+  transition: opacity 0.45s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ct-impact-num.before { color: var(--terracotta); }
+.ct-impact-num.after  { color: var(--sage); }
+.ct-active .ct-impact-num { opacity: 1; transform: scale(1); }
+.ct-active .ct-impact-num.before { transition-delay: 0.05s; }
+.ct-active .ct-impact-num.after  { transition-delay: 0.28s; }
+.ct-impact-arrow { color: var(--sand); font-size: 1.125rem; opacity: 0; transition: opacity 0.3s 0.2s; }
+.ct-active .ct-impact-arrow { opacity: 0.6; }
+.ct-impact-desc {
+  font-family: var(--font-display); font-size: 1rem; font-style: italic; color: var(--ink);
+  display: block; margin-bottom: 16px;
+  opacity: 0; transform: translateY(4px);
+  transition: opacity 0.4s 0.38s cubic-bezier(0.16,1,0.3,1), transform 0.4s 0.38s;
+}
+.ct-active .ct-impact-desc { opacity: 1; transform: translateY(0); }
+.ct-impact-sub {
+  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em; color: var(--ink-muted);
+  display: flex; gap: 0.6em; align-items: center; opacity: 0; transition: opacity 0.4s 0.5s;
+}
+.ct-active .ct-impact-sub { opacity: 0.6; }
 
 /* ================================================================
    UW REEL — Upwork Talent Scout inline showcase
@@ -1529,7 +1638,7 @@ footer {
 
       <!-- ── Card 0: AI Pipeline ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 1 of 5: Building an AI-Governed Design Pipeline">
+        <article class="proj-card" tabindex="0" aria-label="Project 1 of 6: Building an AI-Governed Design Pipeline">
           <div class="proj-num">01</div>
           <div class="proj-img-wrap ds-reel-host">
             <div class="ds-reel" aria-label="Design system showcase animation">
@@ -1654,9 +1763,88 @@ footer {
         </article>
       </div>
 
+      <!-- ── Card: Code as Source of Truth ── -->
+      <div class="proj-wrap">
+        <article class="proj-card" tabindex="0" aria-label="Project 2 of 6: Code as the Source of Truth">
+          <div class="proj-img-wrap ct-reel-host">
+            <div class="ct-reel" aria-label="Component layer rebuild showcase animation">
+              <svg class="ct-reel-grid" viewBox="0 0 520 236" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="ctGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(92,110,77,0.06)" stroke-width="0.5"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#ctGrid)"/>
+              </svg>
+
+              <!-- Scene A: The rule -->
+              <div class="ct-reel-scene ct-scene-a">
+                <div class="ct-reel-label">The Rule</div>
+                <div class="ct-conflict">
+                  <span class="ct-conflict-line"><span class="ct-conflict-figma">figma said</span> 3 button sizes</span>
+                  <span class="ct-conflict-line"><span class="ct-conflict-code">code shipped</span> 2 button sizes</span>
+                </div>
+                <div class="ct-verdict">code wins.</div>
+              </div>
+
+              <!-- Scene B: Rebind -->
+              <div class="ct-reel-scene ct-scene-b">
+                <div class="ct-reel-label">Rebuilt on Tokens</div>
+                <div class="ct-rule-block">
+                  <div class="ct-rule-line"><span class="ct-rule-role">button/background</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">background.action</span></div>
+                  <div class="ct-rule-line"><span class="ct-rule-role">button/spinner</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">per-variant token</span></div>
+                  <div class="ct-rule-line"><span class="ct-rule-role">tooltip/surface</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">fixed neutral &middot; 16.1:1</span></div>
+                  <div class="ct-rule-line"><span class="ct-rule-role">border/weight</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">1px rest &middot; 2px emphasis</span></div>
+                  <div class="ct-rule-line"><span class="ct-rule-role">spinner/path</span><span class="ct-rule-arrow">&rarr;</span><span class="ct-rule-token">SVG from Vue source</span></div>
+                </div>
+              </div>
+
+              <!-- Scene C: Impact -->
+              <div class="ct-reel-scene ct-scene-c">
+                <div class="ct-reel-label">Impact</div>
+                <div class="ct-impact-before-after">
+                  <span class="ct-impact-num before">177</span>
+                  <span class="ct-impact-arrow">&rarr;</span>
+                  <span class="ct-impact-num after">0</span>
+                </div>
+                <span class="ct-impact-desc">paint styles retired</span>
+                <div class="ct-impact-sub">
+                  <span>140 component tokens</span>
+                  <span style="color:var(--sand);">&middot;</span>
+                  <span>60-variant button</span>
+                  <span style="color:var(--sand);">&middot;</span>
+                  <span>0 broken refs</span>
+                </div>
+              </div>
+
+              <!-- Top bar -->
+              <div class="ct-reel-bar">
+                <span class="ct-reel-bar-label">ECOSYSTEM 2026</span>
+                <span class="ct-reel-bar-dots">
+                  <i class="ct-dot ct-dot-active" data-scene="0"></i>
+                  <i class="ct-dot" data-scene="1"></i>
+                  <i class="ct-dot" data-scene="2"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-caption">
+            <div class="proj-eyebrow">Kiva &middot; Principal Product Designer &middot; 2026</div>
+            <h3 class="proj-title">Code as the Source of Truth</h3>
+            <p class="proj-desc">The Figma library and the shipped code had drifted into telling different stories. Set one rule (when they conflict, code wins), retired 177 broken paint styles, and rebuilt ten core components token by token: a 60-variant button set, live-bound documentation, zero broken references.</p>
+            <div class="proj-metrics">
+              <span class="proj-metric">177 styles retired</span>
+              <span class="proj-metric">60-variant button set</span>
+              <span class="proj-metric">0 broken references</span>
+            </div>
+            <a class="proj-link" href="case-ds-code-truth.html">View case study →</a>
+          </div>
+        </article>
+      </div>
+
       <!-- ── Card 1: AI Skill ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 2 of 5: Teaching AI to speak in tokens">
+        <article class="proj-card" tabindex="0" aria-label="Project 3 of 6: Teaching AI to speak in tokens">
           <div class="proj-img-wrap sk-reel-host">
             <div class="sk-reel" aria-label="AI Design Skill showcase animation">
               <svg class="sk-reel-grid" viewBox="0 0 520 236" preserveAspectRatio="xMidYMid slice">
@@ -1735,8 +1923,8 @@ footer {
 
       <!-- ── Card 2: Upwork ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 3 of 5: Turning no-shows into converts at Upwork">
-          <div class="proj-num">03</div>
+        <article class="proj-card" tabindex="0" aria-label="Project 4 of 6: Turning no-shows into converts at Upwork">
+          <div class="proj-num">04</div>
           <div class="proj-img-wrap uw-reel-host">
             <div class="uw-reel" aria-label="Upwork Talent Scout showcase animation">
               <!-- Subtle background -->
@@ -1793,8 +1981,8 @@ footer {
 
       <!-- ── Card 3: Shoply ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 4 of 5: From frustration to retention at Shoply">
-          <div class="proj-num">04</div>
+        <article class="proj-card" tabindex="0" aria-label="Project 5 of 6: From frustration to retention at Shoply">
+          <div class="proj-num">05</div>
           <div class="proj-img-wrap sh-reel-host">
             <div class="sh-reel" aria-label="Shoply case study showcase animation">
               <div class="sh-reel-bg"></div>
@@ -1862,8 +2050,8 @@ footer {
 
       <!-- ── Card 4: FYP ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 5 of 5: 5 days to product clarity at UOPX">
-          <div class="proj-num">05</div>
+        <article class="proj-card" tabindex="0" aria-label="Project 6 of 6: 5 days to product clarity at UOPX">
+          <div class="proj-num">06</div>
           <div class="proj-img-wrap">
             <img class="proj-img"
                  src="portfolio-assets/wp-images/2020/08/FYP2-1280x919.webp"
@@ -2536,6 +2724,44 @@ if (!supportsScrollDriven) {
     current = index % scenes.length;
     scenes[current].classList.add('ds-active');
     dots[current].classList.add('ds-bar-dot-active');
+  }
+
+  function next() { show(current + 1); }
+
+  const reelIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !timer) {
+        show(0);
+        timer = setInterval(next, INTERVAL);
+      } else if (!entry.isIntersecting && timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    });
+  }, { threshold: 0.15 });
+
+  reelIO.observe(reel);
+})();
+
+/* ================================================================
+   11b. CT REEL — Code as Source of Truth auto-cycling animation
+   ================================================================ */
+(function() {
+  const reel = document.querySelector('.ct-reel');
+  if (!reel) return;
+
+  const scenes = reel.querySelectorAll('.ct-reel-scene');
+  const dots   = reel.querySelectorAll('.ct-dot');
+  const INTERVAL = 3400;
+  let current = -1;
+  let timer   = null;
+
+  function show(index) {
+    scenes.forEach(s => s.classList.remove('ct-active'));
+    dots.forEach(d => d.classList.remove('ct-dot-active'));
+    current = index % scenes.length;
+    scenes[current].classList.add('ct-active');
+    dots[current].classList.add('ct-dot-active');
   }
 
   function next() { show(current + 1); }
