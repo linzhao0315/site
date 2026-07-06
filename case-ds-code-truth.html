@@ -1415,6 +1415,7 @@ footer {
   --background-caution:#f8cd69; --background-caution-highlight:#f8f2e6;
   --background-danger:#e0988d; --background-danger-highlight:#f9f0ef;
   --border-secondary-button:#212121; --border-tertiary:#c4c4c4;
+  --border-action:#276a43; --border-secondary:#757575;
   --heading-underline-primary:#2aa967;
 }
 .kv[data-theme="green-light"] {
@@ -1427,7 +1428,7 @@ footer {
   --background-primary:#223829; --background-primary-inverse:#ffffff;
   --background-secondary:#276a43; --background-action:#78c79f; --background-action-highlight:#edf4f1;
   --background-action-secondary:#223829; --background-action-secondary-highlight:#276a43;
-  --border-secondary-button:#edf4f1; --border-tertiary:#78c79f; --heading-underline-primary:#78c79f;
+  --border-secondary-button:#edf4f1; --border-tertiary:#78c79f; --border-action:#78c79f; --border-secondary:#276a43; --heading-underline-primary:#78c79f;
 }
 .kv[data-theme="marigold"] {
   --text-primary:#593207; --text-primary-inverse:#f8f2e6; --text-secondary-button:#593207;
@@ -1436,7 +1437,7 @@ footer {
   --background-action:#996210; --background-action-highlight:#593207;
   --background-action-secondary:#f8f2e6; --background-action-secondary-highlight:#ffffff;
   --background-primary-disabled:#9962104d;
-  --border-secondary-button:#593207; --border-tertiary:#ffffff; --heading-underline-primary:#f8cd69;
+  --border-secondary-button:#593207; --border-tertiary:#ffffff; --border-action:#996210; --border-secondary:#f8cd69; --heading-underline-primary:#f8cd69;
 }
 .kv[data-theme="stone"] {
   --text-primary:#2e271e; --text-primary-inverse:#f3f1ef; --text-secondary-button:#635544;
@@ -1445,7 +1446,7 @@ footer {
   --background-action:#635544; --background-action-highlight:#2e271e;
   --background-action-secondary:#f3f1ef; --background-action-secondary-highlight:#ffffff;
   --background-primary-disabled:#6355444d;
-  --border-secondary-button:#635544; --border-tertiary:#ffffff; --heading-underline-primary:#aa9e8d;
+  --border-secondary-button:#635544; --border-tertiary:#ffffff; --border-action:#635544; --border-secondary:#aa9e8d; --heading-underline-primary:#aa9e8d;
 }
 
 /* Theme stage: a mini loan card rendered on the tokens */
@@ -1525,6 +1526,114 @@ footer {
 .kv-cell-name { font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; color: var(--ink-muted); }
 .kv-btn-stage[data-size="sm"] .kv-b { height: 32px; padding: 0 16px; border-radius: 8px; font-size: 0.875rem; }
 .kv-wall-count { font-family: var(--font-mono); font-size: 0.625rem; color: var(--ink-muted); letter-spacing: 0.06em; }
+
+/* The component kit sampler */
+.kv-kit {
+  background: var(--background-primary); border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: clamp(1rem, 3vw, 1.75rem);
+  transition: background 0.45s var(--ease-silk);
+}
+.kv-kit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 760px) { .kv-kit-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .kv-kit-grid { grid-template-columns: 1fr; } }
+.kv-kit-cell {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; min-height: 132px; padding: 16px 12px 12px;
+  border: 1px dashed color-mix(in srgb, var(--border-tertiary) 60%, transparent);
+  border-radius: 12px;
+}
+.kv-kit-name { font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; color: var(--ink-muted); margin-top: auto; text-align: center; }
+
+/* Forms */
+.kv-form { width: 100%; max-width: 200px; display: flex; flex-direction: column; gap: 10px; }
+.kv-form label.kv-form-label { font-size: 0.75rem; font-weight: 500; color: var(--text-primary); display: block; margin-bottom: 4px; transition: color 0.45s; }
+.kv-input {
+  width: 100%; height: 40px; padding: 0 12px; border-radius: 4px;
+  border: 1px solid var(--border-tertiary); background: var(--background-primary);
+  color: var(--text-primary); font-family: var(--font-body); font-size: 0.875rem;
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.45s, color 0.45s;
+}
+.kv-input::placeholder { color: var(--text-secondary); opacity: 0.7; }
+.kv-input:focus { border-color: var(--border-action); box-shadow: inset 0 0 0 1px var(--border-action); }
+.kv-check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.75rem; color: var(--text-primary); user-select: none; transition: color 0.45s; }
+.kv-check input { position: absolute; opacity: 0; pointer-events: none; }
+.kv-check-box {
+  width: 20px; height: 20px; border-radius: 4px; flex: none;
+  border: 1px solid var(--border-secondary); background: var(--background-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+.kv-check-box::after {
+  content: ''; width: 10px; height: 6px; margin-top: -2px;
+  border-left: 2px solid var(--text-primary-inverse); border-bottom: 2px solid var(--text-primary-inverse);
+  transform: rotate(-45deg) scale(0); transition: transform 0.18s var(--ease-spring);
+}
+.kv-check input:checked + .kv-check-box { background: var(--background-action); border-color: var(--border-action); }
+.kv-check input:checked + .kv-check-box::after { transform: rotate(-45deg) scale(1); }
+.kv-check input:focus-visible + .kv-check-box { box-shadow: 0 0 0 2px var(--border-action); }
+
+/* Tooltip: deliberately NOT on theme variables */
+.kv-tip-pair { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.kv-tip-stage { border-radius: 8px; padding: 14px 10px 18px; display: flex; justify-content: center; min-width: 92px; }
+.kv-tip-stage.light { background: #f5f5f5; }
+.kv-tip-stage.dark { background: #223829; }
+.kv-tip { position: relative; border-radius: 10px; padding: 6px 10px; font-size: 0.6875rem; line-height: 1.4; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.kv-tip::after { content: ''; position: absolute; left: 50%; bottom: -5px; margin-left: -5px; width: 10px; height: 10px; transform: rotate(45deg); background: inherit; }
+.kv-tip.dark { background: #212121; color: #ffffff; }
+.kv-tip.light { background: #ffffff; color: #212121; }
+
+/* Chips and pills */
+.kv-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--background-secondary); color: var(--text-primary);
+  border-radius: 16px; padding: 7px 12px; font-size: 0.8125rem; border: 0; cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.45s, color 0.45s, transform 0.25s var(--ease-spring), opacity 0.25s;
+}
+.kv-chip .x { font-size: 0.875rem; line-height: 1; opacity: 0.75; }
+.kv-chip.gone { transform: scale(0.6); opacity: 0; pointer-events: none; }
+.kv-pillc {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--background-secondary); color: var(--text-primary);
+  border-radius: 16px; padding: 5px 12px; font-size: 0.75rem; font-weight: 500;
+  transition: background 0.45s, color 0.45s;
+}
+.kv-pillc .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--background-action); transition: background 0.45s; }
+
+/* Loading */
+.kv-load { width: 100%; max-width: 170px; display: flex; align-items: center; gap: 14px; }
+.kv-skels { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.kv-skel { height: 12px; border-radius: 4px; background: var(--background-tertiary); position: relative; overflow: hidden; transition: background 0.45s; }
+.kv-skel::after {
+  content: ''; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--background-secondary), transparent);
+  animation: kvshimmer 1.5s infinite;
+}
+@keyframes kvshimmer { to { transform: translateX(100%); } }
+.kv-spin { width: 24px; height: 24px; border-radius: 50%; flex: none;
+  border: 2px solid rgba(117,117,117,0.3); border-top-color: #2aa967;
+  animation: kvspin 0.8s linear infinite; }
+
+/* Avatar */
+.kv-avas { display: flex; gap: 12px; }
+.kv-ava { width: 40px; height: 40px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; }
+.kv-ava.brand { background: #2aa967; color: #ffffff; }
+.kv-ava.letter { background: var(--background-action); color: var(--text-primary-inverse); transition: background 0.45s, color 0.45s; }
+
+/* Carousel controls */
+.kv-car { display: flex; align-items: center; gap: 14px; }
+.kv-car-btn {
+  width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+  border: 1px solid var(--border-tertiary); background: var(--background-primary); color: var(--text-primary);
+  font-size: 0.875rem; line-height: 1; display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.2s, border-color 0.45s, color 0.45s;
+}
+.kv-car-btn:hover { background: var(--background-secondary); }
+.kv-car-dots { display: flex; gap: 6px; }
+.kv-car-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--background-tertiary); border: 0; padding: 0; cursor: pointer; transition: background 0.3s; }
+.kv-car-dot.on { background: var(--background-action); }
 
 /* Machine view: real llms-full.txt content in the tooltip-dark chip */
 .kv-machine {
@@ -1784,6 +1893,80 @@ footer {
         </div>
       </div>
       <p class="kv-lab-note" style="margin-top:0.875rem;"><span class="kv-wall-count">6 variants &times; 2 sizes &times; 5 states = 60.</span> In the Default state the buttons are real: hover them. Hover and active resolve to the same tokens by design; the difference in product is the press interaction, not the color.</p>
+    </div>
+
+    <div class="kv-lab reveal">
+      <div class="kv-lab-eyebrow">&#9678;&nbsp; The Rest of the Kit</div>
+      <p class="kv-lab-intro">Buttons were one component of ten. Here is more of the kit, rendered from the same tokens: the input focus ring, the checkbox fill, the chip you can dismiss, the skeleton shimmer, the avatar fallbacks, the carousel controls. Switch the theme and watch what moves, and what deliberately does not.</p>
+      <div class="kv-pills" role="tablist" aria-label="Switch kit theme">
+        <button class="kv-pill-btn active" data-kv-kit-theme="default" role="tab" aria-selected="true">Default</button>
+        <button class="kv-pill-btn" data-kv-kit-theme="green-light" role="tab" aria-selected="false">Green Light</button>
+        <button class="kv-pill-btn" data-kv-kit-theme="green-dark" role="tab" aria-selected="false">Green Dark</button>
+        <button class="kv-pill-btn" data-kv-kit-theme="marigold" role="tab" aria-selected="false">Marigold</button>
+        <button class="kv-pill-btn" data-kv-kit-theme="stone" role="tab" aria-selected="false">Stone</button>
+      </div>
+      <div class="kv kv-kit" data-theme="default" id="kvKit">
+        <div class="kv-kit-grid">
+
+          <div class="kv-kit-cell">
+            <div class="kv-form">
+              <div>
+                <label class="kv-form-label" for="kv-demo-input">Email address</label>
+                <input class="kv-input" id="kv-demo-input" type="text" placeholder="you@example.org" autocomplete="off">
+              </div>
+              <label class="kv-check"><input type="checkbox" checked><span class="kv-check-box" aria-hidden="true"></span>Email me updates</label>
+            </div>
+            <span class="kv-kit-name">forms &middot; click the input: focus ring = border/action</span>
+          </div>
+
+          <div class="kv-kit-cell">
+            <div class="kv-tip-pair">
+              <div class="kv-tip-stage light"><span class="kv-tip dark">Repaid 98%</span></div>
+              <div class="kv-tip-stage dark"><span class="kv-tip light">Repaid 98%</span></div>
+            </div>
+            <span class="kv-kit-name">tooltip &middot; theme-independent by design &middot; 16.1:1</span>
+          </div>
+
+          <div class="kv-kit-cell">
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center;">
+              <button type="button" class="kv-chip" id="kvChip">Kenya <span class="x" aria-hidden="true">&times;</span></button>
+              <span class="kv-pillc"><span class="dot" aria-hidden="true"></span>Funded</span>
+            </div>
+            <span class="kv-kit-name">chip (dismiss it) &middot; pill</span>
+          </div>
+
+          <div class="kv-kit-cell">
+            <div class="kv-load">
+              <span class="kv-spin" role="img" aria-label="Loading spinner"></span>
+              <div class="kv-skels"><span class="kv-skel"></span><span class="kv-skel" style="width:64%;"></span></div>
+            </div>
+            <span class="kv-kit-name">loading &middot; spinner + skeleton shimmer</span>
+          </div>
+
+          <div class="kv-kit-cell">
+            <div class="kv-avas">
+              <span class="kv-ava brand" role="img" aria-label="Anonymous avatar with Kiva K">K</span>
+              <span class="kv-ava letter" role="img" aria-label="Letter avatar">A</span>
+            </div>
+            <span class="kv-kit-name">avatar &middot; anonymous + letter &middot; no silhouette, ever</span>
+          </div>
+
+          <div class="kv-kit-cell">
+            <div class="kv-car">
+              <button type="button" class="kv-car-btn" data-kv-car="-1" aria-label="Previous">&#8249;</button>
+              <div class="kv-car-dots" id="kvCarDots">
+                <button type="button" class="kv-car-dot on" aria-label="Slide 1"></button>
+                <button type="button" class="kv-car-dot" aria-label="Slide 2"></button>
+                <button type="button" class="kv-car-dot" aria-label="Slide 3"></button>
+              </div>
+              <button type="button" class="kv-car-btn" data-kv-car="1" aria-label="Next">&#8250;</button>
+            </div>
+            <span class="kv-kit-name">carousel controls</span>
+          </div>
+
+        </div>
+      </div>
+      <p class="kv-lab-note">Lightbox, navigation, and footer are in the kit too; they just do not fit in a card. Note the tooltips: every theme leaves them alone, because pulling them out of the theme system was a documented decision, not an accident.</p>
     </div>
   </div>
 </section>
@@ -2376,6 +2559,32 @@ setTimeout(() => {
     b.setAttribute('aria-selected', 'true');
     wall.querySelectorAll('.kv-b').forEach(btn => btn.dataset.state = b.dataset.kvState);
   }));
+})();
+
+(function() {
+  const kit = document.getElementById('kvKit');
+  if (!kit) return;
+  document.querySelectorAll('[data-kv-kit-theme]').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('[data-kv-kit-theme]').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
+    p.classList.add('active');
+    p.setAttribute('aria-selected', 'true');
+    kit.dataset.theme = p.dataset.kvKitTheme;
+  }));
+
+  const chip = document.getElementById('kvChip');
+  if (chip) chip.addEventListener('click', () => {
+    chip.classList.add('gone');
+    setTimeout(() => chip.classList.remove('gone'), 1600);
+  });
+
+  const dots = document.querySelectorAll('#kvCarDots .kv-car-dot');
+  let cur = 0;
+  function setDot(i) {
+    cur = (i + dots.length) % dots.length;
+    dots.forEach((d, j) => d.classList.toggle('on', j === cur));
+  }
+  dots.forEach((d, j) => d.addEventListener('click', () => setDot(j)));
+  document.querySelectorAll('[data-kv-car]').forEach(b => b.addEventListener('click', () => setDot(cur + parseInt(b.dataset.kvCar, 10))));
 })();
 </script>
 <script src="portfolio-assets/auth-gate.js"></script>
