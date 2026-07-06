@@ -20,3 +20,11 @@ portfolio-prototype-v3.html
 
 # macOS
 .DS_Store
+
+# Plaintext sources for password-encrypted case studies — NEVER commit.
+# Edit these, then run `node protect.mjs` to regenerate the encrypted case-*.html.
+protected-src/
+
+# Resume PDF sitting in the repo root — keep it from being published publicly.
+# Delete this line if you intentionally want it served from the site.
+Portfolio_LinZhao.pptx.pdf
