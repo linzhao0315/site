@@ -28,3 +28,4 @@ protected-src/
 # Resume PDF sitting in the repo root — keep it from being published publicly.
 # Delete this line if you intentionally want it served from the site.
 Portfolio_LinZhao.pptx.pdf
+.gstack/
