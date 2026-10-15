@@ -1684,6 +1684,101 @@ footer {
   body { background: #fff; }
   .proj-wrap,.about-display,.contact-display { opacity:1 !important; transform:none !important; }
 }
+
+/* ================================================================
+   IP REEL: Impact portfolio inline showcase
+   ================================================================ */
+.proj-card:has(.ip-reel-host) .proj-num { display: none !important; }
+.ip-reel-host { position: relative; }
+.ip-reel {
+  position: relative; width: 100%; height: 236px;
+  overflow: hidden; border-radius: 18px;
+  background: linear-gradient(155deg, #F7F4ED 0%, #EDE8DE 50%, #E8E4DA 100%);
+}
+.ip-reel-grid { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.7; pointer-events: none; }
+.ip-reel-scene {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 30px 24px 18px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  pointer-events: none;
+}
+.ip-reel-scene.ip-active { opacity: 1; transform: translateY(0); }
+.ip-reel-bar {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 16px;
+}
+.ip-reel-bar-label { font-family: var(--font-mono); font-size: 0.4375rem; letter-spacing: 0.22em; color: var(--sage); opacity: 0.6; }
+.ip-reel-bar-dots { display: flex; gap: 5px; align-items: center; }
+.ip-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--sand); opacity: 0.35;
+  transition: opacity 0.4s, background 0.4s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ip-dot.ip-dot-active { opacity: 1; background: var(--sage); transform: scale(1.3); }
+.ip-reel-label {
+  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 10px; opacity: 0.7;
+}
+.ip-reel-sub {
+  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em; color: var(--ink-muted);
+  opacity: 0; transition: opacity 0.4s 0.5s; text-align: center; margin-top: 10px;
+}
+.ip-active .ip-reel-sub { opacity: 0.65; }
+/* Scene 1: 142 moments, 8 of them the same pair */
+.ip-moments { display: grid; grid-template-columns: repeat(24, 6px); gap: 4px; }
+.ip-moments i {
+  width: 6px; height: 6px; border-radius: 50%; background: rgba(120,118,104,0.22);
+  opacity: 0; transform: scale(0.4);
+  transition: opacity 0.35s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.4s;
+}
+.ip-active .ip-moments i { opacity: 1; transform: scale(1); }
+.ip-active .ip-moments i.k { background: var(--sage); transition-delay: 0.9s; }
+/* Scene 2: the menu hid the page change */
+.ip-mini { width: min(250px, 84%); background: #fff; border-radius: 10px; box-shadow: 0 6px 18px rgba(37,37,32,0.08); position: relative; }
+.ip-mini-tabs { display: flex; align-items: center; line-height: 1.4; gap: 12px; padding: 7px 12px; border-bottom: 1px solid #ececec; font-family: var(--font-body); font-size: 0.5625rem; color: #757575; }
+.ip-mini-tabs b { color: #276a43; font-weight: 600; }
+.ip-mini-page { padding: 10px 12px 12px; font-family: var(--font-body); }
+.ip-mini-h { font-size: 0.6875rem; font-weight: 600; color: #2b2b2b; margin-bottom: 6px; }
+.ip-mini-h .old { display: inline-block; transition: opacity 0.3s 0.6s; }
+.ip-mini-h .new { position: absolute; left: 12px; opacity: 0; transition: opacity 0.3s 0.6s; }
+.ip-active .ip-mini-h .old { opacity: 0; }
+.ip-active .ip-mini-h .new { opacity: 1; }
+.ip-mini-row { display: flex; gap: 5px; } .ip-mini-row i { flex: 1; height: 30px; border-radius: 4px; background: #f1f1f1; }
+.ip-mini-menu {
+  position: absolute; top: 24px; left: 44px; width: 116px; padding: 4px 0;
+  background: #fff; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+  font-family: var(--font-body); font-size: 0.5rem; color: #2b2b2b;
+  opacity: 0; transform: translateY(-3px); transition: opacity 0.25s 0.5s, transform 0.25s 0.5s;
+}
+.ip-mini-menu span { display: block; padding: 2px 9px; line-height: 1.6; }
+.ip-active .ip-mini-menu { opacity: 1; transform: none; }
+.ip-verdict {
+  font-family: var(--font-display); font-size: 1.375rem; font-weight: 300; font-style: italic;
+  color: var(--sage); line-height: 1.1; margin-top: 12px; text-align: center;
+  opacity: 0; transition: opacity 0.5s 1s;
+}
+.ip-active .ip-verdict { opacity: 1; }
+/* Scene 3: rebuilt on the system */
+.ip-shot {
+  width: min(300px, 88%); height: 118px; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 8px 22px rgba(37,37,32,0.10); background: #fff;
+  transform: translateY(8px) scale(0.97); transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.ip-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.ip-active .ip-shot { transform: none; }
+/* Scene 4: handoff */
+.ip-trim-nums { display: flex; align-items: baseline; gap: 12px; }
+.ip-tn { font-family: var(--font-display); font-style: italic; font-weight: 300; line-height: 1; letter-spacing: -0.03em; }
+.ip-tn.before { font-size: 2rem; color: var(--terracotta); opacity: 0.55; }
+.ip-tn.after { font-size: 3rem; color: var(--sage); opacity: 0; transform: scale(0.85); transition: opacity 0.5s 0.3s, transform 0.6s 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.ip-active .ip-tn.after { opacity: 1; transform: none; }
+.ip-tn-arrow { font-family: var(--font-mono); font-size: 0.75rem; color: var(--sand); }
+.ip-tn-desc { font-family: var(--font-body); font-size: 0.6875rem; color: var(--ink-muted); margin-top: 6px; }
+.ip-tn-desc + .ip-reel-sub { margin-top: 14px; }
+@media (prefers-reduced-motion: reduce) {
+  .ip-reel-scene, .ip-moments i, .ip-mini-menu, .ip-mini-h span, .ip-verdict, .ip-shot, .ip-tn.after, .ip-reel-sub { transition: none !important; }
+}
 </style>
 </head>
 <body>
@@ -1743,10 +1838,90 @@ footer {
        role="region" aria-label="Project gallery — drag or use arrow keys">
     <div class="work-track" id="workTrack">
 
-      <!-- ── Card 0: AI Pipeline ── -->
+      <!-- ── Card 0: Impact Portfolio ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 1 of 6: Building an AI-Governed Design Pipeline">
+        <article class="proj-card" tabindex="0" aria-label="Project 1 of 7: From 142 Moments to One Page">
           <div class="proj-num">01</div>
+          <div class="proj-img-wrap ip-reel-host">
+            <div class="ip-reel" aria-label="Impact portfolio case study showcase animation">
+              <svg class="ip-reel-grid" viewBox="0 0 520 236" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="ipGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(92,110,77,0.06)" stroke-width="0.5"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#ipGrid)"/>
+              </svg>
+
+              <!-- Scene 1: Research -->
+              <div class="ip-reel-scene">
+                <div class="ip-reel-label">142 moments</div>
+                <div class="ip-moments" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="ip-reel-sub">6 sessions &middot; 27 tags &middot; one pair, 8 times</div>
+              </div>
+
+              <!-- Scene 2: The mechanism -->
+              <div class="ip-reel-scene">
+                <div class="ip-reel-label">The mechanism</div>
+                <div class="ip-mini" aria-hidden="true">
+                  <div class="ip-mini-tabs"><span>Impact</span><b>Financials <svg width="7" height="7" viewBox="0 0 10 10" aria-hidden="true" style="vertical-align:1px"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></b><span>Community</span></div>
+                  <div class="ip-mini-page">
+                    <div class="ip-mini-h"><span class="old">Impact</span><span class="new">Financials</span></div>
+                    <div class="ip-mini-row"><i></i><i></i><i></i></div>
+                  </div>
+                  <div class="ip-mini-menu"><span>Add credit</span><span>Transaction history</span><span>Donation history</span></div>
+                </div>
+                <div class="ip-verdict">the menu hid the page change.</div>
+              </div>
+
+              <!-- Scene 3: Design -->
+              <div class="ip-reel-scene">
+                <div class="ip-reel-label">Rebuilt on the system</div>
+                <div class="ip-shot"><img src="portfolio-assets/impact/scenario-ten-loans.webp" alt="" loading="lazy" decoding="async" width="1600" height="1298"></div>
+                <div class="ip-reel-sub">desktop + mobile &middot; every state &middot; every value a token</div>
+              </div>
+
+              <!-- Scene 4: Handoff -->
+              <div class="ip-reel-scene">
+                <div class="ip-reel-label">My first PRD</div>
+                <div class="ip-trim-nums">
+                  <span class="ip-tn before">61k</span>
+                  <span class="ip-tn-arrow">&rarr;</span>
+                  <span class="ip-tn after">16k</span>
+                </div>
+                <span class="ip-tn-desc">characters, after nine versions</span>
+                <div class="ip-reel-sub">32-element analytics spec &middot; 27-row nav audit</div>
+              </div>
+
+              <div class="ip-reel-bar">
+                <span class="ip-reel-bar-label">IMPACT PORTFOLIO</span>
+                <span class="ip-reel-bar-dots">
+                  <i class="ip-dot ip-dot-active" data-scene="0"></i>
+                  <i class="ip-dot" data-scene="1"></i>
+                  <i class="ip-dot" data-scene="2"></i>
+                  <i class="ip-dot" data-scene="3"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-caption">
+            <div class="proj-eyebrow">Kiva &middot; Principal Product Designer &middot; 2026</div>
+            <h3 class="proj-title">From 142 Moments to One Page</h3>
+            <p class="proj-desc">One page of Kiva's lender account, from six usability sessions to engineering handoff. A tagging method that found why repayment searches failed, a rebuild on the design system I own, my first PRD in nine versions, and a navigation rule that came straight from the research.</p>
+            <div class="proj-metrics">
+              <span class="proj-metric">142 moments tagged</span>
+              <span class="proj-metric">9 PRD versions</span>
+              <span class="proj-metric">32 tracked elements</span>
+            </div>
+            <a class="proj-link" href="case-impact-portfolio.html">View case study →</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Card 1: AI Pipeline ── -->
+      <div class="proj-wrap">
+        <article class="proj-card" tabindex="0" aria-label="Project 2 of 7: Building an AI-Governed Design Pipeline">
+          <div class="proj-num">02</div>
           <div class="proj-img-wrap ds-reel-host">
             <div class="ds-reel" aria-label="Design system showcase animation">
               <!-- Background grid -->
@@ -1872,7 +2047,7 @@ footer {
 
       <!-- ── Card: Code as Source of Truth ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 2 of 6: Code as the Source of Truth">
+        <article class="proj-card" tabindex="0" aria-label="Project 3 of 7: Code as the Source of Truth">
           <div class="proj-img-wrap ct-reel-host">
             <div class="ct-reel" aria-label="Component layer rebuild showcase animation">
               <svg class="ct-reel-grid" viewBox="0 0 520 236" preserveAspectRatio="xMidYMid slice">
@@ -1963,7 +2138,7 @@ footer {
 
       <!-- ── Card 1: AI Skill ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 3 of 6: Teaching AI to speak in tokens">
+        <article class="proj-card" tabindex="0" aria-label="Project 4 of 7: Teaching AI to speak in tokens">
           <div class="proj-img-wrap sk-reel-host">
             <div class="sk-reel" aria-label="AI Design Skill showcase animation">
               <svg class="sk-reel-grid" viewBox="0 0 520 236" preserveAspectRatio="xMidYMid slice">
@@ -2042,8 +2217,8 @@ footer {
 
       <!-- ── Card 2: Upwork ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 4 of 6: Turning no-shows into converts at Upwork">
-          <div class="proj-num">04</div>
+        <article class="proj-card" tabindex="0" aria-label="Project 5 of 7: Turning no-shows into converts at Upwork">
+          <div class="proj-num">05</div>
           <div class="proj-img-wrap uw-reel-host">
             <div class="uw-reel" aria-label="Upwork Talent Scout showcase animation">
               <!-- Subtle background -->
@@ -2100,8 +2275,8 @@ footer {
 
       <!-- ── Card 3: Shoply ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 5 of 6: From frustration to retention at Shoply">
-          <div class="proj-num">05</div>
+        <article class="proj-card" tabindex="0" aria-label="Project 6 of 7: From frustration to retention at Shoply">
+          <div class="proj-num">06</div>
           <div class="proj-img-wrap sh-reel-host">
             <div class="sh-reel" aria-label="Shoply case study showcase animation">
               <div class="sh-reel-bg"></div>
@@ -2169,8 +2344,8 @@ footer {
 
       <!-- ── Card 4: FYP ── -->
       <div class="proj-wrap">
-        <article class="proj-card" tabindex="0" aria-label="Project 6 of 6: 5 days to product clarity at UOPX">
-          <div class="proj-num">06</div>
+        <article class="proj-card" tabindex="0" aria-label="Project 7 of 7: 5 days to product clarity at UOPX">
+          <div class="proj-num">07</div>
           <div class="proj-img-wrap">
             <img class="proj-img"
                  src="portfolio-assets/wp-images/2020/08/FYP2-1280x919.webp"
@@ -2864,6 +3039,33 @@ if (!supportsScrollDriven) {
     });
   }, { threshold: 0.15 });
 
+  reelIO.observe(reel);
+})();
+
+/* ================================================================
+   11a. IP REEL: Impact portfolio auto-cycling animation
+   ================================================================ */
+(function() {
+  const reel = document.querySelector('.ip-reel');
+  if (!reel) return;
+  const scenes = reel.querySelectorAll('.ip-reel-scene');
+  const dots   = reel.querySelectorAll('.ip-dot');
+  const INTERVAL = 3600;
+  let current = -1, timer = null;
+  function show(index) {
+    scenes.forEach(s => s.classList.remove('ip-active'));
+    dots.forEach(d => d.classList.remove('ip-dot-active'));
+    current = index % scenes.length;
+    scenes[current].classList.add('ip-active');
+    dots[current].classList.add('ip-dot-active');
+  }
+  dots.forEach((d, i) => d.addEventListener('click', e => { e.stopPropagation(); show(i); }));
+  const reelIO = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !timer) { show(0); timer = setInterval(() => show(current + 1), INTERVAL); }
+      else if (!entry.isIntersecting && timer) { clearInterval(timer); timer = null; }
+    });
+  }, { threshold: 0.15 });
   reelIO.observe(reel);
 })();
 

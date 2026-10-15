@@ -14,7 +14,7 @@
  *   node protect.mjs            (type the password twice when prompted)
  *
  * After it finishes:
- *   git add case-ai-pipeline.html case-ai-skill.html case-ds-code-truth.html protect.mjs .gitignore
+ *   git add case-impact-portfolio.html case-ai-pipeline.html case-ai-skill.html case-ds-code-truth.html protect.mjs .gitignore
  *   git commit -m "feat: encrypt protected case studies at rest"
  *   git push
  */
@@ -23,7 +23,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { pbkdf2Sync, randomBytes, createCipheriv } from 'node:crypto';
 import { createInterface } from 'node:readline';
 
-const FILES = ['case-ai-pipeline', 'case-ai-skill', 'case-ds-code-truth'];
+const FILES = ['case-impact-portfolio', 'case-ai-pipeline', 'case-ai-skill', 'case-ds-code-truth'];
 const ITER = 250000;   // PBKDF2 iterations (must match the shell decryptor)
 const KEYLEN = 32;     // AES-256
 const SALT_LEN = 16;
@@ -160,7 +160,7 @@ async function main() {
     console.log(`  encrypted  ${name}.html  (${src.length} chars -> ${payload.length} b64)`);
   }
   console.log('\nDone. Review, then:');
-  console.log('  git add case-ai-pipeline.html case-ai-skill.html case-ds-code-truth.html protect.mjs .gitignore');
+  console.log('  git add case-impact-portfolio.html case-ai-pipeline.html case-ai-skill.html case-ds-code-truth.html protect.mjs .gitignore');
   console.log('  git commit -m "feat: encrypt protected case studies at rest"');
   console.log('  git push');
 }
