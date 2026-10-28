@@ -180,14 +180,19 @@ async function main() {
       console.error(`Missing protected-src/${name}.html — skipping.`);
       continue;
     }
-    const salt = randomBytes(SALT_LEN);
-    const iv = randomBytes(IV_LEN);
-    const key = pbkdf2Sync(password, salt, ITER, KEYLEN, 'sha256');
-    const cipher = createCipheriv('aes-256-gcm', key, iv);
-    const ct = Buffer.concat([cipher.update(src, 'utf8'), cipher.final()]);
-    const tag = cipher.getAuthTag();
-    // layout: salt | iv | ciphertext | tag  (WebCrypto expects the tag appended)
-    const payload = Buffer.concat([salt, iv, ct, tag]).toString('base64');
+    // Random base64 can spell words by chance; re-roll so the repo never
+    // shows up in a code search for the employer's name.
+    let payload;
+    do {
+      const salt = randomBytes(SALT_LEN);
+      const iv = randomBytes(IV_LEN);
+      const key = pbkdf2Sync(password, salt, ITER, KEYLEN, 'sha256');
+      const cipher = createCipheriv('aes-256-gcm', key, iv);
+      const ct = Buffer.concat([cipher.update(src, 'utf8'), cipher.final()]);
+      const tag = cipher.getAuthTag();
+      // layout: salt | iv | ciphertext | tag  (WebCrypto expects the tag appended)
+      payload = Buffer.concat([salt, iv, ct, tag]).toString('base64');
+    } while (/kiva/i.test(payload));
     writeFileSync(`${name}.html`, SHELL(payload, ITER));
     console.log(`  encrypted  ${name}.html  (${src.length} chars -> ${payload.length} b64)`);
   }
