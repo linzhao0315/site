@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F4F0E8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Lin Zhao | Portfolio</title>
+<script>
+// Some apps encode the one-click link's "#" as "%23", which turns
+// /#k=PASSWORD into a path GitHub Pages can't find. Send it back to the real link.
+(function(){
+  var p=location.pathname;
+  for(var i=0;i<3;i++){try{var d=decodeURIComponent(p);if(d===p)break;p=d;}catch(e){break;}}
+  var m=p.match(/^(.*?)#(k=.+)$/);
+  if(m){location.replace((m[1]||'/')+location.search+'#'+m[2]);}
+})();
+</script>
+<style>
+  html,body{margin:0;height:100%}
+  body{background:#F4F0E8;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;color:#252520;text-align:center}
+  p{font-family:system-ui,sans-serif;font-size:.9rem;color:#787668}
+  a{color:#5C6E4D}
+</style>
+</head>
+<body>
+<div>
+  <h1 style="font-weight:400">Page not found</h1>
+  <p><a href="/">Go to linzhao15.com</a></p>
+</div>
+</body>
+</html>
