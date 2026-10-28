@@ -86,7 +86,13 @@ const SHELL = (payloadB64, iter) => `<!DOCTYPE html>
   #pw:focus{border-color:#5C6E4D}
   #err{font-size:.8rem;color:#B87D5A;margin-top:12px;min-height:1em;opacity:0;transition:opacity .3s}
   .hint{font-size:.7rem;color:#B4B0A6;margin-top:20px}
+  .auto .gate{visibility:hidden}
 </style>
+<script>
+// If a password is remembered or in the link, keep the gate hidden while it decrypts
+// so returning visitors don't see it flash. It reappears if that password fails.
+try{if(localStorage.getItem('kv_portfolio_pw')||sessionStorage.getItem('kv_portfolio_pw')||/^#k=/.test(location.hash))document.documentElement.className='auto';}catch(e){}
+</script>
 </head>
 <body>
 <div class="gate">
@@ -134,7 +140,7 @@ ${GOATCOUNTER ? `<script data-goatcounter="https://${GOATCOUNTER}.goatcounter.co
       }
       document.open();document.write(html);document.close();
     }catch(e){
-      if(fromStore){forget();return;}
+      if(fromStore){forget();document.documentElement.className='';pw.focus();return;}
       err.textContent='Incorrect password';err.style.opacity='1';
       pw.value='';pw.style.borderColor='#B87D5A';
       setTimeout(function(){err.style.opacity='0';pw.style.borderColor='#C4B094';},2000);
