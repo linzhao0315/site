@@ -192,7 +192,7 @@ async function main() {
       const tag = cipher.getAuthTag();
       // layout: salt | iv | ciphertext | tag  (WebCrypto expects the tag appended)
       payload = Buffer.concat([salt, iv, ct, tag]).toString('base64');
-    } while (/kiva/i.test(payload));
+    } while (/k[i]va/i.test(payload));
     writeFileSync(`${name}.html`, SHELL(payload, ITER));
     console.log(`  encrypted  ${name}.html  (${src.length} chars -> ${payload.length} b64)`);
   }
