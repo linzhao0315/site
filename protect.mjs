@@ -1,21 +1,25 @@
 #!/usr/bin/env node
 /*
- * protect.mjs — regenerate the password-encrypted case studies.
+ * protect.mjs — regenerate the password-encrypted site.
  *
  * Reads the plaintext sources in ./protected-src/ (gitignored, never committed),
  * encrypts each with AES-256-GCM using a key derived from a password you type at
- * runtime, and overwrites the served ./case-*.html files with a small shell that
- * decrypts the content in the browser.
+ * runtime, and overwrites the served ./*.html pages with a small shell that
+ * decrypts the content in the browser. Every page uses the same password.
  *
  * The password is NEVER stored on disk or in the repo. Anyone who fetches the
  * served HTML, the raw GitHub file, or disables JavaScript sees only ciphertext.
+ *
+ * One-click link: https://www.linzhao15.com/#k=PASSWORD unlocks without typing.
+ * The part after # never reaches the server. Once unlocked, the browser remembers
+ * it (localStorage), so every page and later visits open directly.
  *
  * Usage:
  *   node protect.mjs            (type the password twice when prompted)
  *
  * After it finishes:
- *   git add case-impact-portfolio.html case-ai-pipeline.html case-ai-skill.html case-ds-code-truth.html protect.mjs .gitignore
- *   git commit -m "feat: encrypt protected case studies at rest"
+ *   git add *.html protect.mjs
+ *   git commit -m "chore: re-encrypt site"
  *   git push
  */
 
@@ -23,7 +27,13 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { pbkdf2Sync, randomBytes, createCipheriv } from 'node:crypto';
 import { createInterface } from 'node:readline';
 
-const FILES = ['case-impact-portfolio', 'case-ai-pipeline', 'case-ai-skill', 'case-ds-code-truth'];
+const FILES = [
+  'index', 'case-upwork', 'case-shoply', 'case-fyp',
+  'case-impact-portfolio', 'case-ai-pipeline', 'case-ai-skill', 'case-ds-code-truth',
+];
+// GoatCounter site code (the "xxx" in xxx.goatcounter.com). Empty = no analytics.
+// It runs on the password page, so it counts visits whether or not they unlock.
+const GOATCOUNTER = '';
 const ITER = 250000;   // PBKDF2 iterations (must match the shell decryptor)
 const KEYLEN = 32;     // AES-256
 const SALT_LEN = 16;
@@ -62,7 +72,7 @@ const SHELL = (payloadB64, iter) => `<!DOCTYPE html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Protected &middot; Lin Zhao</title>
+<title>Lin Zhao | Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -84,11 +94,21 @@ const SHELL = (payloadB64, iter) => `<!DOCTYPE html>
   <div class="kicker">Portfolio</div>
   <input id="pw" type="password" placeholder="Enter password" autocomplete="off" autofocus>
   <div id="err"></div>
-  <div class="hint">This case study is password-protected.</div>
+  <div class="hint">This portfolio is password-protected.<br>Need access? <a href="mailto:linzhao0324@gmail.com" style="color:#787668">linzhao0324@gmail.com</a></div>
 </div>
-<script>
+${GOATCOUNTER ? `<script data-goatcounter="https://${GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>\n` : ''}<script>
 (function(){
   var PAYLOAD="${payloadB64}", ITER=${iter}, KEY="kv_portfolio_pw";
+  function load(){try{return localStorage.getItem(KEY)||sessionStorage.getItem(KEY);}catch(e){return null;}}
+  function save(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+  function forget(){try{localStorage.removeItem(KEY);sessionStorage.removeItem(KEY);}catch(e){}}
+  // #k=PASSWORD in the URL unlocks directly; any other #anchor is kept for scrolling.
+  var hash=location.hash, linkPw=null, anchor=hash;
+  var m=hash.match(/^#k=(.+)$/);
+  if(m){
+    linkPw=decodeURIComponent(m[1]);anchor='';
+    history.replaceState(null,'',location.pathname+location.search);
+  }
   var pw=document.getElementById('pw'), err=document.getElementById('err');
   var b=atob(PAYLOAD), raw=new Uint8Array(b.length);
   for(var i=0;i<b.length;i++)raw[i]=b.charCodeAt(i);
@@ -105,17 +125,23 @@ const SHELL = (payloadB64, iter) => `<!DOCTYPE html>
   async function attempt(password,fromStore){
     try{
       var html=await tryUnlock(password);
-      sessionStorage.setItem(KEY,password);
+      save(password);
+      // The shell's script stops once document.open() runs, so the #anchor scroll
+      // is injected into the decrypted page and runs there after it loads.
+      if(/^#[A-Za-z0-9_-]+$/.test(anchor)){
+        var s='<script>(function g(n){if(document.readyState==="complete"){var j=function(){var el=document.getElementById("'+anchor.slice(1)+'");if(el)el.scrollIntoView({behavior:"instant"});};j();setTimeout(j,400);}else if(n<50)setTimeout(function(){g(n+1);},100);})(0);<\\/script>';
+        html=html.indexOf('</body>')>-1?html.replace('</body>',s+'</body>'):html+s;
+      }
       document.open();document.write(html);document.close();
     }catch(e){
-      if(fromStore){sessionStorage.removeItem(KEY);return;}
+      if(fromStore){forget();return;}
       err.textContent='Incorrect password';err.style.opacity='1';
       pw.value='';pw.style.borderColor='#B87D5A';
       setTimeout(function(){err.style.opacity='0';pw.style.borderColor='#C4B094';},2000);
     }
   }
   pw.addEventListener('keydown',function(e){if(e.key==='Enter'&&pw.value)attempt(pw.value,false);});
-  var saved=sessionStorage.getItem(KEY);
+  var saved=linkPw||load();
   if(saved)attempt(saved,true);
 })();
 </script>
@@ -160,8 +186,8 @@ async function main() {
     console.log(`  encrypted  ${name}.html  (${src.length} chars -> ${payload.length} b64)`);
   }
   console.log('\nDone. Review, then:');
-  console.log('  git add case-impact-portfolio.html case-ai-pipeline.html case-ai-skill.html case-ds-code-truth.html protect.mjs .gitignore');
-  console.log('  git commit -m "feat: encrypt protected case studies at rest"');
+  console.log('  git add *.html protect.mjs');
+  console.log('  git commit -m "chore: re-encrypt site"');
   console.log('  git push');
 }
 
