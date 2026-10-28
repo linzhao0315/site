@@ -203,11 +203,10 @@ nav.scrolled {
 .nav-name a:hover { color: var(--sage); opacity: 0.8; }
 .nav-links { display: flex; gap: 2.75rem; }
 .nav-links a {
-  font-family: var(--font-body); font-size: 0.6875rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted);
+  font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted);
   display: inline-flex; align-items: center; min-height: 44px;
-  position: relative; transition: color 0.3s;
-}
+  position: relative; transition: color 0.3s; line-height: 1.5; }
 .nav-links a::after {
   content: ''; position: absolute; bottom: 6px; left: 0;
   width: 0; height: 1px; background: var(--sage);
@@ -222,11 +221,10 @@ main, footer { position: relative; z-index: 2; }
    SECTION EYEBROW
    ================================================================ */
 .eyebrow {
-  font-family: var(--font-mono); font-size: 0.5625rem; font-weight: 400;
-  letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage);
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage);
   display: flex; align-items: center; gap: 0.875rem; margin-bottom: 2rem;
-  opacity: 0.75;
-}
+  opacity: 0.75; line-height: 1.5; }
 .eyebrow::before {
   content: ''; display: block; width: 24px; height: 1px;
   background: currentColor; flex-shrink: 0;
@@ -249,11 +247,10 @@ main, footer { position: relative; z-index: 2; }
 .hero-text { flex: 1; min-width: 0; }
 
 .hero-label {
-  font-family: var(--font-mono); font-size: 0.5625rem;
-  letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-muted);
+  font-family: var(--font-mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted);
   display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
-  opacity: 0; transform: translateY(12px);
-}
+  opacity: 0; transform: translateY(12px); line-height: 1.5; }
 .hero-label::before {
   content:''; width: 22px; height: 1px; background: var(--sage); opacity: 0.5;
 }
@@ -293,10 +290,9 @@ main, footer { position: relative; z-index: 2; }
   opacity: 0; transform: translateY(16px);
 }
 .hero-role {
-  font-family: var(--font-mono); font-size: 0.625rem;
-  color: var(--ink-faint); letter-spacing: 0.14em;
-  opacity: 0; transform: translateY(10px);
-}
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--ink-faint); letter-spacing: 0.07em;
+  opacity: 0; transform: translateY(10px); line-height: 1.5; }
 
 /* Orbital SVG orb */
 .hero-orb {
@@ -322,9 +318,8 @@ main, footer { position: relative; z-index: 2; }
 }
 .scroll-hint.go .scroll-hint-line { animation: hintSlide 2.2s ease-in-out infinite; }
 .scroll-hint-label {
-  font-family: var(--font-mono); font-size: 0.5rem;
-  letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint);
-}
+  font-family: var(--font-mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); line-height: 1.5; }
 
 /* ================================================================
    WORK
@@ -348,12 +343,11 @@ main, footer { position: relative; z-index: 2; }
 .work-title.on { opacity:1; transform: none; }
 
 .drag-hint {
-  font-family: var(--font-mono); font-size: 0.5rem;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint);
+  font-family: var(--font-mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint);
   display: flex; align-items: center; gap: 0.6rem; padding-bottom: 0.5rem;
   opacity: 0; transform: translateY(14px);
-  transition: opacity 0.75s var(--ease-silk) 0.18s, transform 0.75s var(--ease-silk) 0.18s;
-}
+  transition: opacity 0.75s var(--ease-silk) 0.18s, transform 0.75s var(--ease-silk) 0.18s; line-height: 1.5; }
 .drag-hint.on { opacity:1; transform: none; }
 .arr3 { display: flex; gap: 3px; }
 .arr3 span {
@@ -484,11 +478,10 @@ main, footer { position: relative; z-index: 2; }
 /* Card hover number badge (delight) */
 .proj-num {
   position: absolute; top: 20px; right: 20px; z-index: 10;
-  font-family: var(--font-mono); font-size: 0.5rem;
-  letter-spacing: 0.2em; color: var(--sage);
+  font-family: var(--font-mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; color: var(--sage);
   opacity: 0; transition: opacity 0.35s var(--ease-silk);
-  pointer-events: none;
-}
+  pointer-events: none; line-height: 1.5; }
 .proj-card:hover .proj-num { opacity: 0.45; }
 /* Hide number badge on cards with animated reels */
 .proj-card:has(.ds-reel-host) .proj-num,
@@ -1456,10 +1449,9 @@ main, footer { position: relative; z-index: 2; }
 /* flex: 1 makes all captions fill remaining height equally */
 .proj-caption { padding: 1.5rem 0.375rem 0.5rem; position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; }
 .proj-eyebrow {
-  font-family: var(--font-mono); font-size: 0.5rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: #5C6E4D; margin-bottom: 0.7rem; /* solid sage, no opacity */
-}
+  font-family: var(--font-mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #5C6E4D; margin-bottom: 0.7rem; /* solid sage, no opacity */; line-height: 1.5; }
 .proj-title {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.4vw, 1.625rem);
@@ -1472,10 +1464,9 @@ main, footer { position: relative; z-index: 2; }
 }
 .proj-metrics { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; margin-top: auto; }
 .proj-metric {
-  font-family: var(--font-mono); font-size: 0.5625rem; color: var(--sage);
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--sage);
   background: rgba(92,110,77,0.07); border: 1px solid rgba(92,110,77,0.14);
-  padding: 0.2rem 0.65rem; border-radius: 100px; letter-spacing: 0.04em;
-}
+  padding: 0.2rem 0.65rem; border-radius: 100px; letter-spacing: 0.04em; line-height: 1.5; }
 .proj-link {
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500;
@@ -1555,11 +1546,10 @@ main, footer { position: relative; z-index: 2; }
 .about-bio.on { opacity:1; transform: none; }
 
 .about-detail {
-  font-family: var(--font-mono); font-size: 0.625rem;
-  color: var(--ink-muted); letter-spacing: 0.14em; margin-bottom: 2.25rem;
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--ink-muted); letter-spacing: 0.07em; margin-bottom: 2.25rem;
   opacity: 0; transform: translateY(14px);
-  transition: opacity 0.75s var(--ease-silk) 0.22s, transform 0.75s var(--ease-silk) 0.22s;
-}
+  transition: opacity 0.75s var(--ease-silk) 0.22s, transform 0.75s var(--ease-silk) 0.22s; line-height: 1.5; }
 .about-detail.on { opacity:1; transform: none; }
 
 .about-links {
@@ -1636,9 +1626,8 @@ footer {
   border-top: 1px solid rgba(92,110,77,0.07); position: relative; z-index: 2;
 }
 .footer-copy, .footer-note {
-  font-family: var(--font-mono); font-size: 0.5rem;
-  color: var(--ink-faint); letter-spacing: 0.16em;
-}
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--ink-faint); letter-spacing: 0.08em; line-height: 1.5; }
 
 /* ================================================================
    MAGNETIC element helper
@@ -1687,6 +1676,7 @@ footer {
 
 /* ================================================================
    IP REEL: Impact portfolio inline showcase
+   The question, the old answer, the research, the new answer
    ================================================================ */
 .proj-card:has(.ip-reel-host) .proj-num { display: none !important; }
 .ip-reel-host { position: relative; }
@@ -1699,7 +1689,7 @@ footer {
 .ip-reel-scene {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 30px 24px 18px;
+  padding: 34px 22px 22px;
   opacity: 0; transform: translateY(6px);
   transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
   pointer-events: none;
@@ -1717,15 +1707,53 @@ footer {
 }
 .ip-dot.ip-dot-active { opacity: 1; background: var(--sage); transform: scale(1.3); }
 .ip-reel-label {
-  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--sage); margin-bottom: 10px; opacity: 0.7;
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 14px; opacity: 0.75;
 }
-.ip-reel-sub {
-  font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em; color: var(--ink-muted);
-  opacity: 0; transition: opacity 0.4s 0.5s; text-align: center; margin-top: 10px;
+/* Scene 1: the question */
+.ip-q {
+  font-family: var(--font-display); font-style: italic; font-weight: 300;
+  font-size: clamp(1.75rem, 3.4vw, 2.25rem); line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ink); text-align: center;
 }
-.ip-active .ip-reel-sub { opacity: 0.65; }
-/* Scene 1: 142 moments, 8 of them the same pair */
+.ip-q span { display: inline-block; opacity: 0; transform: translateY(6px); transition: opacity 0.45s, transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+.ip-q em { font-style: inherit; color: var(--sage); }
+.ip-active .ip-q span { opacity: 1; transform: none; }
+.ip-active .ip-q span:nth-child(2) { transition-delay: 0.12s; }
+.ip-active .ip-q span:nth-child(3) { transition-delay: 0.24s; }
+.ip-active .ip-q span:nth-child(4) { transition-delay: 0.36s; }
+.ip-active .ip-q span:nth-child(5) { transition-delay: 0.48s; }
+/* Scenes 2 and 4: the same row of numbers, before and after */
+.ip-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  width: min(430px, 96%); border-radius: 12px; overflow: hidden;
+}
+.ip-row > div {
+  padding: 12px 6px 11px; text-align: center;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.4s, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ip-active .ip-row > div { opacity: 1; transform: none; }
+.ip-active .ip-row > div:nth-child(2) { transition-delay: 0.1s; }
+.ip-active .ip-row > div:nth-child(3) { transition-delay: 0.2s; }
+.ip-active .ip-row > div:nth-child(4) { transition-delay: 0.3s; }
+.ip-row b { display: block; font-family: var(--font-body); font-weight: 500; font-size: 1.25rem; line-height: 1.2; }
+.ip-row small { display: block; margin-top: 4px; font-family: var(--font-body); font-size: 0.75rem; line-height: 1.35; }
+.ip-row.old { background: #1f3a2b; }
+.ip-row.old > div + div { border-left: 1px solid rgba(255,255,255,0.08); }
+.ip-row.old b { color: #8fd1a9; }
+.ip-row.old small { color: rgba(255,255,255,0.82); }
+.ip-row.new { background: #fff; box-shadow: 0 6px 18px rgba(37,37,32,0.08); }
+.ip-row.new > div + div { border-left: 1px solid #ececec; }
+.ip-row.new b { color: #2b2b2b; }
+.ip-row.new small { color: #6f6f6f; }
+.ip-caption {
+  margin-top: 14px; font-family: var(--font-display); font-style: italic;
+  font-size: 1.125rem; line-height: 1.3; color: var(--ink-muted); text-align: center;
+  opacity: 0; transition: opacity 0.5s 0.55s;
+}
+.ip-active .ip-caption { opacity: 1; }
+/* Scene 3: 142 moments, 8 of them the same pair */
 .ip-moments { display: grid; grid-template-columns: repeat(24, 6px); gap: 4px; }
 .ip-moments i {
   width: 6px; height: 6px; border-radius: 50%; background: rgba(120,118,104,0.22);
@@ -1734,51 +1762,14 @@ footer {
 }
 .ip-active .ip-moments i { opacity: 1; transform: scale(1); }
 .ip-active .ip-moments i.k { background: var(--sage); transition-delay: 0.9s; }
-/* Scene 2: the menu hid the page change */
-.ip-mini { width: min(250px, 84%); background: #fff; border-radius: 10px; box-shadow: 0 6px 18px rgba(37,37,32,0.08); position: relative; }
-.ip-mini-tabs { display: flex; align-items: center; line-height: 1.4; gap: 12px; padding: 7px 12px; border-bottom: 1px solid #ececec; font-family: var(--font-body); font-size: 0.5625rem; color: #757575; }
-.ip-mini-tabs b { color: #276a43; font-weight: 600; }
-.ip-mini-page { padding: 10px 12px 12px; font-family: var(--font-body); }
-.ip-mini-h { font-size: 0.6875rem; font-weight: 600; color: #2b2b2b; margin-bottom: 6px; }
-.ip-mini-h .old { display: inline-block; transition: opacity 0.3s 0.6s; }
-.ip-mini-h .new { position: absolute; left: 12px; opacity: 0; transition: opacity 0.3s 0.6s; }
-.ip-active .ip-mini-h .old { opacity: 0; }
-.ip-active .ip-mini-h .new { opacity: 1; }
-.ip-mini-row { display: flex; gap: 5px; } .ip-mini-row i { flex: 1; height: 30px; border-radius: 4px; background: #f1f1f1; }
-.ip-mini-menu {
-  position: absolute; top: 24px; left: 44px; width: 116px; padding: 4px 0;
-  background: #fff; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,0.16);
-  font-family: var(--font-body); font-size: 0.5rem; color: #2b2b2b;
-  opacity: 0; transform: translateY(-3px); transition: opacity 0.25s 0.5s, transform 0.25s 0.5s;
-}
-.ip-mini-menu span { display: block; padding: 2px 9px; line-height: 1.6; }
-.ip-active .ip-mini-menu { opacity: 1; transform: none; }
-.ip-verdict {
-  font-family: var(--font-display); font-size: 1.375rem; font-weight: 300; font-style: italic;
-  color: var(--sage); line-height: 1.1; margin-top: 12px; text-align: center;
-  opacity: 0; transition: opacity 0.5s 1s;
-}
-.ip-active .ip-verdict { opacity: 1; }
-/* Scene 3: rebuilt on the system */
-.ip-shot {
-  width: min(300px, 88%); height: 118px; border-radius: 10px; overflow: hidden;
-  box-shadow: 0 8px 22px rgba(37,37,32,0.10); background: #fff;
-  transform: translateY(8px) scale(0.97); transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
-}
-.ip-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-.ip-active .ip-shot { transform: none; }
-/* Scene 4: handoff */
-.ip-trim-nums { display: flex; align-items: baseline; gap: 12px; }
-.ip-tn { font-family: var(--font-display); font-style: italic; font-weight: 300; line-height: 1; letter-spacing: -0.03em; }
-.ip-tn.before { font-size: 2rem; color: var(--terracotta); opacity: 0.55; }
-.ip-tn.after { font-size: 3rem; color: var(--sage); opacity: 0; transform: scale(0.85); transition: opacity 0.5s 0.3s, transform 0.6s 0.3s cubic-bezier(0.34,1.56,0.64,1); }
-.ip-active .ip-tn.after { opacity: 1; transform: none; }
-.ip-tn-arrow { font-family: var(--font-mono); font-size: 0.75rem; color: var(--sand); }
-.ip-tn-desc { font-family: var(--font-body); font-size: 0.6875rem; color: var(--ink-muted); margin-top: 6px; }
-.ip-tn-desc + .ip-reel-sub { margin-top: 14px; }
 @media (prefers-reduced-motion: reduce) {
-  .ip-reel-scene, .ip-moments i, .ip-mini-menu, .ip-mini-h span, .ip-verdict, .ip-shot, .ip-tn.after, .ip-reel-sub { transition: none !important; }
+  .ip-reel-scene, .ip-q span, .ip-row > div, .ip-caption, .ip-moments i { transition: none !important; }
 }
+
+/* ── Readability: 12px floor, with breathing room around small labels ── */
+.proj-metrics { gap: 0.5rem; }
+.proj-metric { padding: 0.3rem 0.75rem; }
+.proj-eyebrow { margin-bottom: 0.75rem; }
 </style>
 </head>
 <body>
@@ -1931,11 +1922,6 @@ footer {
                   <span class="ds-impact-num">90%+</span>
                   <span class="ds-impact-word">AI Fidelity</span>
                 </div>
-                <div class="ds-impact-sub">
-                  <span>3 tools validated</span>
-                  <span class="ds-impact-dot">&middot;</span>
-                  <span>100+ teammates</span>
-                </div>
               </div>
 
               <!-- Persistent top bar -->
@@ -1987,7 +1973,6 @@ footer {
                   <span class="ct-ls d2" style="right:10px; top:0;"><span class="ct-btn ct-btn-secondary" style="rotate:2deg; --dur:5.2s; --del:0.4s;">Learn more</span></span>
                   <span class="ct-ls d3" style="right:44px; top:56px;"><span class="ct-btn ct-btn-caution" style="rotate:-2.5deg; scale:0.92; --dur:4.9s; --del:0.8s;">Review</span></span>
                 </div>
-                <div class="ct-btn-sub">6 variants &times; 2 sizes &times; 5 states &middot; every value a token</div>
               </div>
 
               <!-- Scene A2: kit sampler -->
@@ -1999,7 +1984,6 @@ footer {
                   <span class="ct-ls d4" style="right:78px; top:48px;"><span class="ct-kit-spin" aria-hidden="true" style="--dur:4.4s; --del:0.3s;"></span></span>
                   <span class="ct-ls d5" style="right:16px; top:44px;"><span class="ct-kit-ava" style="--dur:5.8s; --del:0.7s;">K</span></span>
                 </div>
-                <div class="ct-btn-sub">tooltip &middot; pills &middot; forms &middot; loading &middot; avatar &middot; one token source</div>
               </div>
 
               <!-- Scene B: The rule -->
@@ -2021,13 +2005,6 @@ footer {
                   <span class="ct-impact-num after">0</span>
                 </div>
                 <span class="ct-impact-desc">paint styles retired</span>
-                <div class="ct-impact-sub">
-                  <span>140 component tokens</span>
-                  <span style="color:var(--sand);">&middot;</span>
-                  <span>60-variant button</span>
-                  <span style="color:var(--sand);">&middot;</span>
-                  <span>0 broken refs</span>
-                </div>
               </div>
 
               <!-- Top bar -->
@@ -2103,11 +2080,6 @@ footer {
                   <span class="sk-impact-num after">1</span>
                 </div>
                 <span class="sk-impact-desc">correction loops</span>
-                <div class="sk-impact-sub">
-                  <span>91/100 score</span>
-                  <span style="color:var(--sand);">&middot;</span>
-                  <span>100+ teammates</span>
-                </div>
               </div>
 
               <!-- Top bar -->
@@ -2289,7 +2261,7 @@ footer {
         <article class="proj-card" tabindex="0" aria-label="Project 7 of 7: From 142 Moments to One Page">
           <div class="proj-num">07</div>
           <div class="proj-img-wrap ip-reel-host">
-            <div class="ip-reel" aria-label="Impact portfolio case study showcase animation">
+            <div class="ip-reel" aria-label="What did my money do: the old answer, the research, the new answer">
               <svg class="ip-reel-grid" viewBox="0 0 520 236" preserveAspectRatio="xMidYMid slice">
                 <defs>
                   <pattern id="ipGrid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -2299,44 +2271,40 @@ footer {
                 <rect width="100%" height="100%" fill="url(#ipGrid)"/>
               </svg>
 
-              <!-- Scene 1: Research -->
+              <!-- Scene 1: the question -->
               <div class="ip-reel-scene">
-                <div class="ip-reel-label">142 moments</div>
+                <div class="ip-reel-label">The question</div>
+                <div class="ip-q"><span>What</span> <span>did</span> <span>my</span> <span><em>money</em></span> <span>do?</span></div>
+              </div>
+
+              <!-- Scene 2: the old answer -->
+              <div class="ip-reel-scene">
+                <div class="ip-reel-label">The old answer</div>
+                <div class="ip-row old" aria-hidden="true">
+                  <div><b>$0</b><small>total lent</small></div>
+                  <div><b>0</b><small>loans</small></div>
+                  <div><b>0</b><small>countries</small></div>
+                  <div><b>0th</b><small>percentile</small></div>
+                </div>
+                <div class="ip-caption">a ledger of zeros</div>
+              </div>
+
+              <!-- Scene 3: the research -->
+              <div class="ip-reel-scene">
+                <div class="ip-reel-label">142 moments, tagged</div>
                 <div class="ip-moments" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="ip-reel-sub">6 sessions &middot; 27 tags &middot; one pair, 8 times</div>
               </div>
 
-              <!-- Scene 2: The mechanism -->
+              <!-- Scene 4: the new answer -->
               <div class="ip-reel-scene">
-                <div class="ip-reel-label">The mechanism</div>
-                <div class="ip-mini" aria-hidden="true">
-                  <div class="ip-mini-tabs"><span>Impact</span><b>Financials <svg width="7" height="7" viewBox="0 0 10 10" aria-hidden="true" style="vertical-align:1px"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></b><span>Community</span></div>
-                  <div class="ip-mini-page">
-                    <div class="ip-mini-h"><span class="old">Impact</span><span class="new">Financials</span></div>
-                    <div class="ip-mini-row"><i></i><i></i><i></i></div>
-                  </div>
-                  <div class="ip-mini-menu"><span>Add credit</span><span>Transaction history</span><span>Donation history</span></div>
+                <div class="ip-reel-label">The new answer</div>
+                <div class="ip-row new" aria-hidden="true">
+                  <div><b>$25</b><small>your first loan</small></div>
+                  <div><b>1</b><small>borrower</small></div>
+                  <div><b>1</b><small>El Salvador</small></div>
+                  <div><b>1</b><small>first badge</small></div>
                 </div>
-                <div class="ip-verdict">the menu hid the page change.</div>
-              </div>
-
-              <!-- Scene 3: Design -->
-              <div class="ip-reel-scene">
-                <div class="ip-reel-label">Rebuilt on the system</div>
-                <div class="ip-shot"><img src="portfolio-assets/impact/scenario-ten-loans.webp" alt="" loading="lazy" decoding="async" width="1600" height="1298"></div>
-                <div class="ip-reel-sub">desktop + mobile &middot; every state &middot; every value a token</div>
-              </div>
-
-              <!-- Scene 4: Handoff -->
-              <div class="ip-reel-scene">
-                <div class="ip-reel-label">My first PRD</div>
-                <div class="ip-trim-nums">
-                  <span class="ip-tn before">61k</span>
-                  <span class="ip-tn-arrow">&rarr;</span>
-                  <span class="ip-tn after">16k</span>
-                </div>
-                <span class="ip-tn-desc">characters, after nine versions</span>
-                <div class="ip-reel-sub">32-element analytics spec &middot; 27-row nav audit</div>
+                <div class="ip-caption">a beginning, not a score</div>
               </div>
 
               <div class="ip-reel-bar">
