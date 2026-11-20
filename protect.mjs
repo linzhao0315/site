@@ -30,6 +30,7 @@ import { createInterface } from 'node:readline';
 const FILES = [
   'index', 'case-upwork', 'case-shoply', 'case-fyp',
   'case-impact-portfolio', 'case-ai-pipeline', 'case-ai-skill', 'case-ds-code-truth',
+  'case-figma-builder',
 ];
 // GoatCounter site code (the "xxx" in xxx.goatcounter.com). Empty = no analytics.
 // It runs on the password page, so it counts visits whether or not they unlock.
