@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F4F0E8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Lin Zhao | Portfolio</title>
+<style>html,body{margin:0;height:100%;background:#F4F0E8}</style>
+<script>
+// Clean share link: www.linzhao15.com/view
+// Remembers access in this browser, then opens the portfolio with a clean address bar.
+// Optional deep link: /view?to=case-upwork opens that case study.
+(function(){
+  var KEY='kv_portfolio_pw', v=atob('MTAwOA==');
+  var to=(new URLSearchParams(location.search).get('to')||'').replace(/\.html$/,'').replace(/[^a-z0-9-]/gi,'');
+  var dest=to?'/'+to+'.html':'/';
+  var ok=false;
+  try{localStorage.setItem(KEY,v);ok=localStorage.getItem(KEY)===v;}catch(e){}
+  if(!ok){try{sessionStorage.setItem(KEY,v);ok=sessionStorage.getItem(KEY)===v;}catch(e){}}
+  // If the browser blocks storage, fall back to the one-click link; the site strips it from the address bar.
+  location.replace(ok?dest:dest+'#k='+encodeURIComponent(v));
+})();
+</script>
+</head>
+<body></body>
+</html>
